@@ -10,3 +10,18 @@ a {
 h1 {
   color: 15px;
 }
+
+.box3divs {
+  width: 80%;
+  height: auto;
+  display:flex;
+}
+
+.singleDiv {
+  width: 33%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fdd587;
+}

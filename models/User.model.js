@@ -20,6 +20,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    //Añado un campo opcional al modelo de user donde indicar el sector
+    industry: {
+      type: String,
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

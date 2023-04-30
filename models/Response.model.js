@@ -17,4 +17,4 @@ const responseSchema = new Schema(
   }
 );
 
-module.exports = model("Response", promptSchema);
+module.exports = model("Response", responseSchema);

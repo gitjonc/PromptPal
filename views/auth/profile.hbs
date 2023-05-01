@@ -3,9 +3,7 @@
   <p>Esta es tu página de usuario
     {{userInSession.username}}, donde te has registrado con el email
     {{userInSession.email}}.</p>
-  <button>
-    <a href="/log-out">Log out</a>
-  </button>
+
   <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe
       src="https://giphy.com/embed/3oz8xDLuiN1GcDA3xC"
       width="100%"
@@ -17,8 +15,15 @@
     ></iframe></div><p><a
       href="https://giphy.com/gifs/landonmoss-landon-moss-3oz8xDLuiN1GcDA3xC"
     ></a></p>
+
+  <div>
+    <p>Para ver la BBDD de Prompts, <a href="/prompts">haz click aquí.</a></p>
+  </div>
   <button>
     <a href="/profile">Reload the page</a>
+  </button>
+  <button>
+    <a href="/log-out">Log out</a>
   </button>
 {{else}}
 

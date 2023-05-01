@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Prompt = require("../models/Prompt.model");
 require("dotenv").config();
 
-const MONGO_URI = process.env.MONGODB_URI;
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/PromptPal";
 
 const prompts = [
   {
@@ -622,7 +623,8 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "What are some effective strategies for creating and promoting video content on social media?",
+    definition:
+      "What are some effective strategies for creating and promoting video content on social media?",
   },
   {
     tag: "Content Creation and Curation",
@@ -631,11 +633,13 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "What are some best practices for <re-purposing> existing content to <maximize engagement>?",
+    definition:
+      "What are some best practices for <re-purposing> existing content to <maximize engagement>?",
   },
   {
     tag: "Content Creation and Curation",
-    definition: "How can you curate <user-generated content> to enhance your brand's <online presence>?",
+    definition:
+      "How can you curate <user-generated content> to enhance your brand's <online presence>?",
   },
   {
     tag: "Content Creation and Curation",
@@ -664,7 +668,8 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "How can businesses use social media to build brand awareness and engage with their target audience?",
+    definition:
+      "How can businesses use social media to build brand awareness and engage with their target audience?",
   },
   {
     tag: "Content Creation and Curation",
@@ -688,7 +693,8 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "How can <insert brand/product> effectively use influencer marketing to reach a wider audience?",
+    definition:
+      "How can <insert brand/product> effectively use influencer marketing to reach a wider audience?",
   },
   {
     tag: "Content Creation and Curation",
@@ -782,7 +788,8 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "What are some effective <content creation> strategies for <social media platforms>?",
+    definition:
+      "What are some effective <content creation> strategies for <social media platforms>?",
   },
   {
     tag: "Content Creation and Curation",
@@ -826,7 +833,8 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "What are the best practices for optimizing website content for search engine rankings?",
+    definition:
+      "What are the best practices for optimizing website content for search engine rankings?",
   },
   {
     tag: "Content Creation and Curation",
@@ -965,7 +973,8 @@ const prompts = [
   },
   {
     tag: "Content Creation and Curation",
-    definition: "Blogging: I want to start a blog and increase traffic to my site by <X>% in <Y> months.",
+    definition:
+      "Blogging: I want to start a blog and increase traffic to my site by <X>% in <Y> months.",
   },
   {
     tag: "Content Creation and Curation",
@@ -999,7 +1008,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "Website traffic: I want to increase my website traffic by <X>% within the next six months.",
+    definition:
+      "Website traffic: I want to increase my website traffic by <X>% within the next six months.",
   },
   {
     tag: "Content Performance",
@@ -1043,7 +1053,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "Brand awareness: I want to increase my brand awareness by <X>% on <Platform> within the next year.",
+    definition:
+      "Brand awareness: I want to increase my brand awareness by <X>% on <Platform> within the next year.",
   },
   {
     tag: "Content Performance",
@@ -1132,7 +1143,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "What are some effective ways to segment my email list for targeted marketing campaigns?",
+    definition:
+      "What are some effective ways to segment my email list for targeted marketing campaigns?",
   },
   {
     tag: "Content Performance",
@@ -1146,7 +1158,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "How can I improve my website's search engine ranking to drive more organic traffic?",
+    definition:
+      "How can I improve my website's search engine ranking to drive more organic traffic?",
   },
   {
     tag: "Content Performance",
@@ -1165,7 +1178,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "Sales revenue: I want to increase my monthly sales revenue by <X>% within the next year.",
+    definition:
+      "Sales revenue: I want to increase my monthly sales revenue by <X>% within the next year.",
   },
   {
     tag: "Content Performance",
@@ -1289,7 +1303,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "What strategies can I use to optimize my PPC ads for better click-through rates?",
+    definition:
+      "What strategies can I use to optimize my PPC ads for better click-through rates?",
   },
   {
     tag: "Content Performance",
@@ -1373,7 +1388,8 @@ const prompts = [
   },
   {
     tag: "Content Performance",
-    definition: "What metrics should I track to evaluate the success of my social media campaigns?",
+    definition:
+      "What metrics should I track to evaluate the success of my social media campaigns?",
   },
   {
     tag: "Content Performance",
@@ -1512,7 +1528,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "How can <insert brand/business> use influencer marketing to reach a wider audience?",
+    definition:
+      "How can <insert brand/business> use influencer marketing to reach a wider audience?",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1566,7 +1583,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "What are some creative strategies for <insert business/product> to promote content offline?",
+    definition:
+      "What are some creative strategies for <insert business/product> to promote content offline?",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1620,7 +1638,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "What are some effective <social media platforms> strategies to increase content reach and engagement?",
+    definition:
+      "What are some effective <social media platforms> strategies to increase content reach and engagement?",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1714,7 +1733,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "Website Traffic Boost: I want to increase monthly website traffic from <X> to <Y> within <Z> months.",
+    definition:
+      "Website Traffic Boost: I want to increase monthly website traffic from <X> to <Y> within <Z> months.",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1748,7 +1768,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "What are some ways to optimize <insert website/channel> for search engine results?",
+    definition:
+      "What are some ways to optimize <insert website/channel> for search engine results?",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1892,7 +1913,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "Brand Awareness: I want to increase brand awareness by <X>% in <Y> months through content marketing.",
+    definition:
+      "Brand Awareness: I want to increase brand awareness by <X>% in <Y> months through content marketing.",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1931,7 +1953,8 @@ const prompts = [
   },
   {
     tag: "Content Promotion and Distribution",
-    definition: "How can <insert business/product> effectively promote content on social media platforms?",
+    definition:
+      "How can <insert business/product> effectively promote content on social media platforms?",
   },
   {
     tag: "Content Promotion and Distribution",
@@ -1995,7 +2018,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "What are some effective strategies for <business> to create high-quality backlinks?",
+    definition:
+      "What are some effective strategies for <business> to create high-quality backlinks?",
   },
   {
     tag: "SEO Copywriting",
@@ -2024,7 +2048,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "How can <your brand> use social media to build brand awareness and increase website traffic?",
+    definition:
+      "How can <your brand> use social media to build brand awareness and increase website traffic?",
   },
   {
     tag: "SEO Copywriting",
@@ -2103,7 +2128,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "How can <company> use social media to boost their website traffic?",
+    definition:
+      "How can <company> use social media to boost their website traffic?",
   },
   {
     tag: "SEO Copywriting",
@@ -2117,7 +2143,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "Content Engagement: I want to increase my blog post engagement by <200%> within the next <6 months>",
+    definition:
+      "Content Engagement: I want to increase my blog post engagement by <200%> within the next <6 months>",
   },
   {
     tag: "SEO Copywriting",
@@ -2161,7 +2188,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "Website Traffic: I want to increase my monthly website traffic from <500> to <10,000> in <3 months>",
+    definition:
+      "Website Traffic: I want to increase my monthly website traffic from <500> to <10,000> in <3 months>",
   },
   {
     tag: "SEO Copywriting",
@@ -2215,7 +2243,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "How can <client> improve their meta descriptions to increase click-through rates?",
+    definition:
+      "How can <client> improve their meta descriptions to increase click-through rates?",
   },
   {
     tag: "SEO Copywriting",
@@ -2358,7 +2387,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "How can <your business> create unique and valuable content that stands out from competitors?",
+    definition:
+      "How can <your business> create unique and valuable content that stands out from competitors?",
   },
   {
     tag: "SEO Copywriting",
@@ -2407,7 +2437,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "What are some keyword research tools that can help improve <your website's> SEO strategy?",
+    definition:
+      "What are some keyword research tools that can help improve <your website's> SEO strategy?",
   },
   {
     tag: "SEO Copywriting",
@@ -2441,11 +2472,13 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "What are some effective ways to optimize <your company's> landing page for better conversion rates?",
+    definition:
+      "What are some effective ways to optimize <your company's> landing page for better conversion rates?",
   },
   {
     tag: "SEO Copywriting",
-    definition: "What are the best keyword research tools for <industry> businesses?",
+    definition:
+      "What are the best keyword research tools for <industry> businesses?",
   },
   {
     tag: "SEO Copywriting",
@@ -2459,7 +2492,8 @@ const prompts = [
   },
   {
     tag: "SEO Copywriting",
-    definition: "Brand Awareness: I want to increase my brand awareness by <50%> within <1 year>",
+    definition:
+      "Brand Awareness: I want to increase my brand awareness by <50%> within <1 year>",
   },
   {
     tag: "SEO Copywriting",
@@ -2473,7 +2507,8 @@ const prompts = [
   },
   {
     tag: "Marketing Storytelling",
-    definition: "What metrics should <business> measure to evaluate the success of their content marketing efforts?",
+    definition:
+      "What metrics should <business> measure to evaluate the success of their content marketing efforts?",
   },
   {
     tag: "Marketing Storytelling",
@@ -2682,7 +2717,8 @@ const prompts = [
   },
   {
     tag: "Marketing Storytelling",
-    definition: "What are some creative ways to use video marketing to engage <insert target audience>?",
+    definition:
+      "What are some creative ways to use video marketing to engage <insert target audience>?",
   },
   {
     tag: "Marketing Storytelling",
@@ -2726,7 +2762,8 @@ const prompts = [
   },
   {
     tag: "Marketing Storytelling",
-    definition: "How can <brand> leverage user-generated content to build trust and credibility with their audience?",
+    definition:
+      "How can <brand> leverage user-generated content to build trust and credibility with their audience?",
   },
   {
     tag: "Marketing Storytelling",
@@ -2745,7 +2782,8 @@ const prompts = [
   },
   {
     tag: "Marketing Storytelling",
-    definition: "What are some effective <insert industry> influencer marketing strategies?",
+    definition:
+      "What are some effective <insert industry> influencer marketing strategies?",
   },
   {
     tag: "Marketing Storytelling",
@@ -2889,7 +2927,8 @@ const prompts = [
   },
   {
     tag: "Marketing Storytelling",
-    definition: "How can <business> effectively use social media to market their <product/service>?",
+    definition:
+      "How can <business> effectively use social media to market their <product/service>?",
   },
   {
     tag: "Marketing Storytelling",

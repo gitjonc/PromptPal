@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 const User = require("./../models/User.model");
+const Prompt = require("./../models/Prompt.model");
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 // How many rounds should bcrypt run the salt (default - 10 rounds)
@@ -13,12 +14,12 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-// GET /signup
+// GET /sign-up
 router.get("/sign-up", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
-// POST /signup
+// POST /sign-up
 router.post("/sign-up", isLoggedOut, async (req, res, next) => {
   try {
     const { username, email, password, industry } = req.body;
@@ -64,12 +65,12 @@ router.post("/sign-up", isLoggedOut, async (req, res, next) => {
   }
 });
 
-// GET /login
+// GET /log-in
 router.get("/log-in", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 
-// POST /login
+// POST /log-in
 router.post("/log-in", isLoggedOut, async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -101,7 +102,24 @@ router.get("/profile", isLoggedIn, (req, res) => {
   res.render("auth/profile", { userInSession: req.session.currentUser });
 });
 
-// GET /auth/logout
+//GET /prompts
+router.get("/prompts", (req, res, next) => {
+  Prompt.find()
+    .then((allPrompts) => {
+      console.log("Prompts from DB:", allPrompts);
+
+      res.render("auth/prompts.hbs", { prompts: allPrompts });
+    })
+    .catch((error) => {
+      console.log("Error while getting the books from the DB: ", error);
+
+      next(error);
+    });
+});
+
+module.exports = router;
+
+// GET /log-out
 router.get("/log-out", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {

@@ -29,4 +29,14 @@ h1 {
 .prompts {
   border: 2px solid #00b7ff;
   margin-bottom: 2px;
+  padding: 5px;
+}
+
+.response {
+  background-color: #fdd587;
+}
+
+.definition {
+  background-color: aquamarine;
+  padding: 10px;
 }

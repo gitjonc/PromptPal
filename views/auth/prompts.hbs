@@ -1,7 +1,14 @@
 <h2>Available prompts</h2>
+<button>
+  <a href="/profile">Ir a mi perfil</a>
+</button>
+<button>
+  <a href="/log-out">Log out</a>
+</button>
 {{#each prompts}}
   <div class="prompts">
     <h3>{{tag}}</h3>
     <p>{{definition}}</p>
+    <a href="/prompts/{{id}}">Ver detalles</a>
   </div>
 {{/each}}

@@ -106,8 +106,6 @@ router.get("/profile", isLoggedIn, (req, res) => {
 router.get("/prompts", (req, res, next) => {
   Prompt.find()
     .then((allPrompts) => {
-      console.log("Prompts from DB:", allPrompts);
-
       res.render("auth/prompts.hbs", { prompts: allPrompts });
     })
     .catch((error) => {
@@ -117,7 +115,22 @@ router.get("/prompts", (req, res, next) => {
     });
 });
 
-module.exports = router;
+router.get("/prompts/:promptId", (req, res) => {
+  const { promptId } = req.params;
+  Prompt.findById(promptId)
+    .then((prompt) => {
+      res.render("auth/prompt.hbs", { prompt });
+      console.log({ promptId });
+    })
+    .catch((err) => console.log(err));
+});
+
+// Buyer Persona Development
+// Content Creation and Curation
+// Content Performance
+// Content Promotion and Distribution
+// SEO Copywriting
+// Marketing Storytelling
 
 // GET /log-out
 router.get("/log-out", isLoggedIn, (req, res) => {

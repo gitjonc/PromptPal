@@ -1,0 +1,32 @@
+<h2>Available prompts</h2>
+<button>
+  <a href="/profile">Ir a mi perfil</a>
+</button>
+<button>
+  <a href="/log-out">Log out</a>
+</button>
+<button>
+  <a href="/prompts">Ver todos</a>
+</button>
+<button>
+  <a href="/prompts/buyer-persona">Buyer Persona</a>
+</button>
+<button>
+  <a href="/prompts/content-creation">Content Creation</a>
+</button><button>
+  <a href="/prompts/content-performance">Content Performance</a>
+</button><button>
+  <a href="/prompts/content-promotion-distribution">Content Promotion and Distribution</a>
+</button><button>
+  <a href="/prompts/seo">SEO Copywritting</a>
+</button>
+</button><button>
+  <a href="/prompts/story-telling">Story Telling</a>
+</button>
+{{#each prompts}}
+  <div class="prompts">
+    <h3>{{tag}}</h3>
+    <p>{{definition}}</p>
+    <a href="/prompts/{{id}}">Ver detalles</a>
+  </div>
+{{/each}}

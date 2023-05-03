@@ -98,7 +98,7 @@ router.post("/log-in", isLoggedOut, async (req, res, next) => {
   }
 });
 
-router.get("/profile", isLoggedIn, (req, res) => {
+router.get("/profile", (req, res) => {
   res.render("auth/profile", { userInSession: req.session.currentUser });
 });
 

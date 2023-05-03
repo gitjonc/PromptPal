@@ -1,18 +1,23 @@
+<div class="profile">
+  <p>
+    Inicia sesión para acceder a nuestra herramienta 🤓
+  </p>
+</div>
 <div id="login-form">
   <h2>Log In</h2>
   <form action="/log-in" method="POST">
 
     <label>
       Email
-      <input type="email" name="email" placeholder="Your email" />
+      <input type="email" name="email" placeholder="Email" />
     </label>
 
     <label>
-      Password
-      <input type="password" name="password" placeholder="Your password" />
+      Contraseña
+      <input type="password" name="password" placeholder="Contraseña" />
     </label>
 
-    <button type="submit">Log In</button>
+    <button type="submit" class="button">Iniciar sesión</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

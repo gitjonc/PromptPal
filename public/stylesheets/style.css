@@ -4,11 +4,71 @@ body {
 }
 
 a {
-  color: #00b7ff;
+  color: #5ed9a7;
 }
 
 h1 {
   color: 15px;
+}
+
+header > div {
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #5ed9a7;
+}
+
+#searchBar {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header > form, label, input {
+  background-color: rgba(0,0,0,.05);
+  padding: 10px 50px;
+}
+
+.promptPal {
+  width: 160px;
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+nav {
+  width: 600px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.button {
+  color: white;
+  padding: 10px 30px;
+      background-color: #5ed9a7;
+      font-weight: 600;
+}
+
+.promptPalButton {
+  color: black;
+  padding: 10px 30px;
+      background-color: #5ed9a7;
+      font-weight: 600;
+}
+
+.minifying {
+  width: 40px;
+  margin-right: 10px;
 }
 
 .box3divs {
@@ -26,8 +86,19 @@ h1 {
   background-color: #fdd587;
 }
 
+.profile {
+  display: flex;
+  border-bottom: 1px solid #5ed9a7;
+}
+
+.profile h1, p, h3 {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .prompts {
-  border: 2px solid #00b7ff;
+  border: 2px solid #5ed9a7;
   margin-bottom: 2px;
   padding: 5px;
 }

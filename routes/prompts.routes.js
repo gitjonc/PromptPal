@@ -6,7 +6,7 @@ const Prompt = require("./../models/Prompt.model");
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
-router.get("/", (req, res, next) => {
+router.get("/", isLoggedIn, (req, res, next) => {
   Prompt.find()
     .then((allPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: allPrompts });
@@ -20,7 +20,7 @@ router.get("/", (req, res, next) => {
 
 //GET prompts by TAG
 
-router.get("/buyer-persona", (req, res, next) => {
+router.get("/buyer-persona", isLoggedIn, (req, res, next) => {
   Prompt.find({ tag: "Buyer Persona Development" })
     .then((bpPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: bpPrompts });
@@ -32,7 +32,7 @@ router.get("/buyer-persona", (req, res, next) => {
     });
 });
 
-router.get("/content-creation", (req, res, next) => {
+router.get("/content-creation", isLoggedIn, (req, res, next) => {
   Prompt.find({ tag: "Content Creation and Curation" })
     .then((ccacPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: ccacPrompts });
@@ -44,7 +44,7 @@ router.get("/content-creation", (req, res, next) => {
     });
 });
 
-router.get("/content-performance", (req, res, next) => {
+router.get("/content-performance", isLoggedIn, (req, res, next) => {
   Prompt.find({ tag: "Content Performance" })
     .then((cpPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: cpPrompts });
@@ -56,7 +56,7 @@ router.get("/content-performance", (req, res, next) => {
     });
 });
 
-router.get("/content-promotion-distribution", (req, res, next) => {
+router.get("/content-promotion-distribution", isLoggedIn, (req, res, next) => {
   Prompt.find({ tag: "Content Promotion and Distribution" })
     .then((cpadPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: cpadPrompts });
@@ -68,7 +68,7 @@ router.get("/content-promotion-distribution", (req, res, next) => {
     });
 });
 
-router.get("/seo", (req, res, next) => {
+router.get("/seo", isLoggedIn, (req, res, next) => {
   Prompt.find({ tag: "SEO Copywriting" })
     .then((seocPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: seocPrompts });
@@ -80,7 +80,7 @@ router.get("/seo", (req, res, next) => {
     });
 });
 
-router.get("/story-telling", (req, res, next) => {
+router.get("/story-telling", isLoggedIn, (req, res, next) => {
   Prompt.find({ tag: "Marketing Storytelling" })
     .then((mksPrompts) => {
       res.render("prompts/prompts.hbs", { prompts: mksPrompts });
@@ -92,7 +92,7 @@ router.get("/story-telling", (req, res, next) => {
     });
 });
 
-router.get("/:promptId", (req, res) => {
+router.get("/:promptId", isLoggedIn, (req, res) => {
   const { promptId } = req.params;
   Prompt.findById(promptId)
     .then((prompt) => {

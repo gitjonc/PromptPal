@@ -1,5 +1,5 @@
 {{#if userInSession}}
-  <h1 class="auth">Welcome {{userInSession.username}}</h1>
+  <h1 class="auth">Este es tu espacio {{userInSession.username}}</h1>
   <p>Esta es tu página de usuario
     {{userInSession.username}}, donde te has registrado con el email
     {{userInSession.email}}.</p>
@@ -16,17 +16,35 @@
       href="https://giphy.com/gifs/landonmoss-landon-moss-3oz8xDLuiN1GcDA3xC"
     ></a></p>
 
-  <div>
-    <p>Para ver la BBDD de Prompts, <a href="/prompts">haz click aquí.</a></p>
+  <div class="profile">
+    <h3>Para ver todos los prompts, <a href="/prompts">haz click aquí</a></h3>
+
   </div>
-  <button>
-    <a href="/">Back to main page</a>
-  </button>
-  <button>
-    <a href="/log-out">Log out</a>
-  </button>
+
 {{else}}
 
-  <br /><p>Still no logged in user, sorry!</p>
+  <br /><p>¡Debes iniciar sesión para acceder a tu perfil!</p>
+
+  <div id="login-form">
+    <h2>Log In</h2>
+    <form action="/log-in" method="POST">
+
+      <label>
+        Email
+        <input type="email" name="email" placeholder="Email" />
+      </label>
+
+      <label>
+        Contraseña
+        <input type="password" name="password" placeholder="Contraseña" />
+      </label>
+
+      <button type="submit" class="button">Iniciar sesión</button>
+
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
 
 {{/if}}

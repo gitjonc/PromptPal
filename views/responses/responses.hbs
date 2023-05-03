@@ -1,0 +1,29 @@
+<h2>Available responses</h2>
+
+<a href="/profile"><button>Ir a mi perfil</button></a>
+
+<a href="/log-out"><button>Log out</button></a>
+
+<a href="/responses"><button>Ver todas</button></a>
+
+<a href="/responses/buyer-persona"><button>Buyer Persona</button></a>
+
+<a href="/responses/content-creation"><button>Content Creation</button></a>
+
+<a href="/responses/content-performance"><button>Content Performance</button></a>
+
+<a href="/responses/content-promotion-distribution"><button>Content Promotion
+    and Distribution</button></a>
+
+<a href="/responses/seo"><button>SEO Copywritting</button></a>
+
+<a href="/responses/story-telling"><button>Story Telling</button></a>
+
+{{#each responses}}
+  <div class="prompts">
+    <h3>{{query}}</h3>
+    <p>{{chatGPTresponse}}</p>
+    <p>{{prompts}}</p>
+    <a href="/responses/{{id}}">Ver detalles</a>
+  </div>
+{{/each}}

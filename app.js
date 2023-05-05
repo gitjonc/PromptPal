@@ -33,6 +33,9 @@ app.use("/prompts", promptsRoutes);
 const responsesRoutes = require("./routes/responses.routes");
 app.use("/responses", responsesRoutes);
 
+const askRoutes = require("./routes/ask.routes");
+app.use("/ask", askRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

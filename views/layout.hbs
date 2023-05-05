@@ -10,37 +10,68 @@
 
   <body>
 
-    <header>
-      <div>
-        <div>
-          <a href="/"><img
-              src="./../images/PromptPAL_Logo2.png"
-              alt="promptPal"
-              class="promptPal"
-            /></a>
+    {{#if userInSession}}
+      <header>
+        <div class="navbar">
+          <div>
+            <a href="/"><img
+                src="./../images/PromptPAL_Logo2.png"
+                alt="promptPal"
+                class="promptPal"
+              /></a>
+          </div>
+          <nav>
+
+            <ul>
+              <li><a href="/"> Inicio </a></li>
+              <li><a href="/profile"> Perfil </a></li>
+              <li><a href="/prompts"> Prompts </a></li>
+              <li><a href="/responses"> Respuestas </a></li>
+              <li><a href="/log-out"> Cerrar sesión </a></li>
+            </ul>
+
+            <form action="#" method="post" id="searchBar">
+              <img
+                src="./../images/searchIcon.png"
+                alt="magnifying glass"
+                class="minifying"
+              />
+              <input
+                type="text"
+                id="promptSearch"
+                placeholder="Buscar prompts"
+              />
+              <button class="button">Buscar</button>
+            </form>
+          </nav>
         </div>
-        <nav>
-          <form action="#" method="post" id="searchBar">
-            <img
-              src="./../images/searchIcon.png"
-              alt="magnifying glass"
-              class="minifying"
-            />
-            <input type="text" id="promptSearch" placeholder="Buscar prompts" />
-            <button class="button">Buscar</button>
-          </form>
-          <ul>
-            <li><a href="/"> Inicio </a></li>
-            <li><a href="/profile"> Perfil </a></li>
-            <li><a href="/prompts"> Prompts </a></li>
-            <li><a href="/responses"> Respuestas </a></li>
-            <li><a href="/log-out"> Cerrar sesión </a></li>
-          </ul>
-        </nav>
-      </div>
 
-    </header>
+      </header>
 
+    {{else}}
+      <header>
+        <div class="navbar">
+          <div>
+            <a href="/"><img
+                src="./../images/PromptPAL_Logo2.png"
+                alt="promptPal"
+                class="promptPal"
+              /></a>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="/sign-up" class="promptPalButton">
+                  Crear una cuenta
+                </a></li>
+              <li><a href="/log-in" class="promptPalButton">
+                  Iniciar sesión
+                </a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </header>
+    {{/if}}
     {{{body}}}
 
     <script src="/js/script.js"></script>

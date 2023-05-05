@@ -1,28 +1,33 @@
-<div id="form">
-  <h2>Sign Up</h2>
-  <form action="/sign-up" method="POST">
+<div class="form">
 
+  <form action="/sign-up" method="POST">
+    <h2>Crear cuenta</h2>
     <label>
-      Username
+      Usuario:
       <input type="text" name="username" placeholder="Your username" />
     </label>
 
     <label>
-      Email
+      Email:
       <input type="email" name="email" placeholder="Your email" />
     </label>
 
     <label>
-      Password
+      Contraseña:
       <input type="password" name="password" placeholder="Your password" />
     </label>
 
     <label>
-      Industry
+      Imagen de perfil:
+      <input type="image" name="profilePic" />
+    </label>
+
+    <label>
+      Sector:
       <input type="text" name="industry" placeholder="Your industry" />
     </label>
 
-    <button type="submit">Sign Up</button>
+    <button type="submit" class="promptPalButton">Sign Up</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
@@ -31,4 +36,3 @@
 </div>
 
 <p>¿Ya tienes cuenta? <a href="/log-in">Inicia sesión</a></p>
-<p>Vuelve al <a href="/">Inicio</a></p>

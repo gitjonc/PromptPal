@@ -8,9 +8,14 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
 router.get("/", isLoggedIn, (req, res, next) => {
+  console.log("----->", req.session.currentUser.email);
   Prompt.find()
     .then((allPrompts) => {
-      res.render("prompts/prompts.hbs", { prompts: allPrompts });
+      res.render(
+        "prompts/prompts.hbs",
+
+        { prompts: allPrompts }
+      );
     })
     .catch((error) => {
       console.log("Error while getting the books from the DB: ", error);

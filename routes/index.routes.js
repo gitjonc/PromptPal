@@ -11,6 +11,7 @@ const saltRounds = 10;
 
 /* GET home page */
 router.get("/", (req, res, next) => {
+  console.log(req.session);
   res.render("index");
 });
 
@@ -98,7 +99,7 @@ router.post("/log-in", isLoggedOut, async (req, res, next) => {
   }
 });
 
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   res.render("auth/profile", { userInSession: req.session.currentUser });
 });
 

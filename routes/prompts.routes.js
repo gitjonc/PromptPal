@@ -2,14 +2,20 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 
 const Prompt = require("./../models/Prompt.model");
+const User = require("./../models/User.model");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
 router.get("/", isLoggedIn, (req, res, next) => {
+  console.log("----->", req.session.currentUser.email);
   Prompt.find()
     .then((allPrompts) => {
-      res.render("prompts/prompts.hbs", { prompts: allPrompts });
+      res.render(
+        "prompts/prompts.hbs",
+
+        { prompts: allPrompts }
+      );
     })
     .catch((error) => {
       console.log("Error while getting the books from the DB: ", error);
@@ -99,9 +105,16 @@ router.get("/:promptId", isLoggedIn, (req, res) => {
       res.render("prompts/prompt.hbs", { prompt });
       console.log({ promptId });
       console.log(req.params);
+      console.log("------------>", {
+        userInSession: req.session.currentUser._id,
+      });
     })
     .catch((err) => console.log(err));
 });
+
+//  router.get("/mis-prompts", isLoggedIn, (req, res) => {
+
+//  });
 
 module.exports = router;
 

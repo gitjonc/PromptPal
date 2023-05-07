@@ -10,7 +10,12 @@ const responseSchema = new Schema(
       type: String,
       required: true,
     },
-    prompts: [{ type: Schema.Types.ObjectId, ref: "Prompt" }],
+    tag: {
+      type: String,
+      required: true,
+    },
+    prompt: { type: Schema.Types.ObjectId, ref: "Prompt" },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true,

@@ -103,11 +103,6 @@ router.get("/:promptId", isLoggedIn, (req, res) => {
   Prompt.findById(promptId)
     .then((prompt) => {
       res.render("prompts/prompt.hbs", { prompt });
-      console.log({ promptId });
-      console.log(prompt);
-      console.log(prompt.definition);
-
-      console.log(prompt.tag);
     })
     .catch((err) => console.log(err));
 });
@@ -127,6 +122,15 @@ router.post("/:promptId/edit", isLoggedIn, (req, res, next) => {
   const { tag, definition } = req.body;
   Prompt.create({ tag, definition })
     .then(() => res.redirect("/prompts"))
+    .catch((error) => next(error));
+});
+
+router.post("/:promptId/delete", isLoggedIn, (req, res, next) => {
+  const { promptId } = req.params;
+  Prompt.findByIdAndDelete(promptId)
+    .then(() => {
+      res.redirect("/prompts");
+    })
     .catch((error) => next(error));
 });
 

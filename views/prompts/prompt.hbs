@@ -22,10 +22,16 @@
 <div class="prompts">
   <p class="definition">{{prompt.definition}}</p>
   <p class="response">{{prompt.responses}}</p>
-  <a href="/prompts/{{prompt._id}}/save" class="promptPal"><button
-    >Guardar</button></a>
+  <div class="flex">
   <a href="/prompts/{{prompt._id}}/edit" class="promptPal"><button
+      class="promptPalButton"
     >Editar</button></a>
-  <a href="/prompts/send-prompt" class="promptPal"><button>Enviar</button></a>
+  <a href="/prompts/send-prompt" class="promptPal"><button
+      class="promptPalButton"
+    >Enviar</button></a>
+  <form action="/prompts/{{prompt._id}}/delete" method="post">
+    <button class="promptPalButton">Eliminar</button>
+    </div>
+  </form>
 
 </div>

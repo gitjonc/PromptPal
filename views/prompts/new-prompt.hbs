@@ -1,11 +1,18 @@
 <h2>Your Prompt</h2>
 
 <form action="/prompts/{{promptToEdit._id}}/edit" method="post">
-  {{prompt.tag}}
+
   <div class="prompts">
-    <input type="text" name="tag" value="{{promptToEdit.tag}}" />
-    <button type="submit">Guardar</button>
-    <a href="/prompts/send-prompt" class="promptPalButton">Enviar</a>
+    <input
+      type="text"
+      name="tag"
+      value="{{promptToEdit.tag}}"
+      class="prompts"
+    />
+    <div class="flex">
+      <button type="submit" class="promptPalButton">Guardar</button>
+      <a href="/prompts/send-prompt" class="promptPalButton">Enviar</a>
+    </div>
 
   </div>
   <div class="promptsEdit">

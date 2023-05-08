@@ -32,7 +32,9 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 router.post("/create", isLoggedIn, (req, res, next) => {
   const { promptId } = req.params;
   const { tag, definition } = req.body;
-  Prompt.create({ tag, definition })
+  const user = req.session.currentUser._id;
+  console.log(user);
+  Prompt.create({ tag, definition, user })
     .then(() => res.redirect("/prompts"))
     .catch((error) => next(error));
 });

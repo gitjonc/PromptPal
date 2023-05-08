@@ -111,6 +111,11 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
     });
 });
 
+router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
+  console.log();
+  res.render("prompts/prompts.hbs");
+});
+
 router.get("/:promptId", isLoggedIn, (req, res) => {
   const { promptId } = req.params;
   Prompt.findById(promptId)

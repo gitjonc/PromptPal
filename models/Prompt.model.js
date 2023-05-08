@@ -11,6 +11,7 @@ const promptSchema = new Schema(
       required: true,
     },
     responses: [{ type: Schema.Types.ObjectId, ref: "Response" }],
+    user: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   {
     timestamps: true,

@@ -1,9 +1,8 @@
 <h2>Your Prompt</h2>
 
-<form action="/prompts/create" method="post">
+<form action="/prompts/{{promptToEdit._id}}/edit" method="post">
 
   <div class="prompts">
-    <h3>TAG:</h3>
     <input
       type="text"
       name="tag"
@@ -17,8 +16,6 @@
 
   </div>
   <div class="promptsEdit">
-    <h3>PROMPT:</h3>
-
     <textarea
       class="definitionEdit"
       name="definition"

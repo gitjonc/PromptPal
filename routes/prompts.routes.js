@@ -8,8 +8,9 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
 router.get("/", isLoggedIn, (req, res, next) => {
-  console.log("----->", req.session.currentUser.email);
+  // console.log("----->", req.session.currentUser.email);
   Prompt.find()
+    .sort({ createdAt: -1 })
     .then((allPrompts) => {
       res.render(
         "prompts/prompts.hbs",
@@ -22,6 +23,18 @@ router.get("/", isLoggedIn, (req, res, next) => {
 
       next(error);
     });
+});
+
+router.get("/create", isLoggedIn, (req, res, next) => {
+  res.render("prompts/new-prompt.hbs");
+});
+
+router.post("/create", isLoggedIn, (req, res, next) => {
+  const { promptId } = req.params;
+  const { tag, definition } = req.body;
+  Prompt.create({ tag, definition })
+    .then(() => res.redirect("/prompts"))
+    .catch((error) => next(error));
 });
 
 //GET prompts by TAG
@@ -112,7 +125,7 @@ router.get("/:promptId/edit", isLoggedIn, (req, res, next) => {
   Prompt.findById(promptId)
     .then((promptToEdit) => {
       console.log(promptToEdit);
-      res.render("prompts/new-prompt.hbs", { promptToEdit });
+      res.render("prompts/edited-prompt.hbs", { promptToEdit });
     })
     .catch((error) => next(error));
 });

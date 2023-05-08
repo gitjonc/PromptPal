@@ -104,12 +104,30 @@ router.get("/:promptId", isLoggedIn, (req, res) => {
     .then((prompt) => {
       res.render("prompts/prompt.hbs", { prompt });
       console.log({ promptId });
-      console.log(req.params);
-      console.log("------------>", {
-        userInSession: req.session.currentUser._id,
-      });
+      console.log(prompt);
+      console.log(prompt.definition);
+
+      console.log(prompt.tag);
     })
     .catch((err) => console.log(err));
+});
+
+router.get("/:promptId/edit", isLoggedIn, (req, res, next) => {
+  const { promptId } = req.params;
+  Prompt.findById(promptId)
+    .then((promptToEdit) => {
+      console.log(promptToEdit);
+      res.render("prompts/new-prompt.hbs", { promptToEdit });
+    })
+    .catch((error) => next(error));
+});
+
+router.post("/:promptId/edit", isLoggedIn, (req, res, next) => {
+  const { promptId } = req.params;
+  const { tag, definition } = req.body;
+  Prompt.create({ tag, definition })
+    .then(() => res.redirect("/prompts"))
+    .catch((error) => next(error));
 });
 
 //  router.get("/mis-prompts", isLoggedIn, (req, res) => {
@@ -117,10 +135,3 @@ router.get("/:promptId", isLoggedIn, (req, res) => {
 //  });
 
 module.exports = router;
-
-// Buyer Persona Development
-// Content Creation and Curation
-// Content Performance
-// Content Promotion and Distribution
-// SEO Copywriting
-// Marketing Storytelling

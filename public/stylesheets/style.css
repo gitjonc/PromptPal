@@ -157,6 +157,13 @@ nav a {
   padding: 5px;
 }
 
+.promptsEdit {
+  border: 2px solid #5ed9a7;
+  margin-bottom: 2px;
+  padding: 5px;
+  display: flex;
+}
+
 .response {
   background-color: #fdd587;
 }
@@ -164,4 +171,12 @@ nav a {
 .definition {
   background-color: aquamarine;
   padding: 10px;
+}
+
+.definitionEdit {
+  background-color: aquamarine;
+  padding: 10px;
+  width: 90%;
+  height: auto;
+  justify-content: center;
 }

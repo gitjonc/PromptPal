@@ -1,0 +1,20 @@
+<h2>Your Prompt</h2>
+
+<form action="/prompts/{{promptToEdit._id}}/edit" method="post">
+  {{prompt.tag}}
+  <div class="prompts">
+    <input type="text" name="tag" value="{{promptToEdit.tag}}" />
+    <button type="submit">Guardar</button>
+    <a href="/prompts/send-prompt" class="promptPalButton">Enviar</a>
+
+  </div>
+  <div class="promptsEdit">
+    <textarea
+      class="definitionEdit"
+      name="definition"
+      cols="30"
+      rows="10"
+    >{{promptToEdit.definition}}</textarea>
+
+  </div>
+</form>

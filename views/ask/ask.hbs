@@ -2,15 +2,30 @@
 <p>Recuerda editar los parámetros necesarios antes de realizar la consulta</p>
 <div id="consult">
   <form action="{{id}}" method="POST">
-    <textarea name="prompt" cols="30" rows="10" class="definitionEdit">{{definition}}</textarea>
-    <button type="submit">Preguntar</button>
+    <textarea
+      name="prompt"
+      cols="30"
+      rows="10"
+      class="definitionEdit"
+    >{{definition}}</textarea>
+    <button type="submit" class="promptPalButton">Preguntar</button>
   </form>
 
   {{#if response}}
     <form action="save/{{id}}" method="POST">
-      <input type="text" name="prompt" style="display: none;" value="{{definition}}" />
-      <textarea name="response" cols="30" rows="10" class="definitionEdit">{{response}}</textarea>
-      <button id="save">Guardar</button>
+      <input
+        type="text"
+        name="prompt"
+        style="display: none;"
+        value="{{definition}}"
+      />
+      <textarea
+        name="response"
+        cols="30"
+        rows="10"
+        class="definitionEdit"
+      >{{response}}</textarea>
+      <button id="save" class="promptPalButton">Guardar</button>
     </form>
   {{/if}}
 </div>

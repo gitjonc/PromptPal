@@ -4,12 +4,11 @@
 
 <a href="/responses"><button>Ver todas</button></a>
 
-<a href="/responses/my-responses"><button>Mis respuestas</button></a>
-
 <h2>{{response.query}}</h2>
 
 <div class="prompts">
   <p class="definition">{{response.chatGPTresponse}}</p>
   <p class="response">{{response.prompts}}</p>
-
+  <a href="/prompts/{{response.prompt}}">Ir a prompt</a>
+  <a href="">Enviar por email</a>
 </div>

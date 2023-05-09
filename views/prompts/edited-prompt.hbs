@@ -3,15 +3,26 @@
 <form action="/prompts/{{promptToEdit._id}}/edit" method="post">
 
   <div class="prompts">
-    <input type="text" name="tag" value="{{promptToEdit.tag}}" class="prompts" />
-    <div class="flex">
-      <button type="submit" class="promptPalButton">Guardar</button>
-      <a href="/ask/{{promptToEdit._id}}" class="promptPalButton">Enviar</a>
-    </div>
+    <h3>TAG</h3>
+    <input
+      type="text"
+      name="tag"
+      value="{{promptToEdit.tag}}"
+      class="prompts"
+    />
 
   </div>
   <div class="promptsEdit">
-    <textarea class="definitionEdit" name="definition" cols="30" rows="10">{{promptToEdit.definition}}</textarea>
+    <textarea
+      class="definitionEdit"
+      name="definition"
+      cols="30"
+      rows="10"
+    >{{promptToEdit.definition}}</textarea>
 
+  </div>
+
+  <div class="flex">
+    <button type="submit" class="promptPalButton">Guardar</button>
   </div>
 </form>

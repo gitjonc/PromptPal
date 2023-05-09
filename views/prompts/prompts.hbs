@@ -1,47 +1,44 @@
-{{#if prompts}}
-
-  <h2>Available prompts</h2>
-
-  <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
+<div><a href="/prompts/create"><button class="promptPalCreateButton">Crear
+      prompt</button></a>
 
   <a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis
-      prompts</button></a>
+      prompts</button></a></div>
 
-  <div class="flex">
+<div class="flex">
 
-    <a href="/prompts"><button>Ver todos</button></a>
+  <a href="/prompts"><button>Ver todos</button></a>
 
-    <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
+  <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
 
-    <a href="/prompts/content-creation"><button>Content Creation</button></a>
+  <a href="/prompts/content-creation"><button>Content Creation</button></a>
 
-    <a href="/prompts/content-performance"><button>Content Performance</button></a>
+  <a href="/prompts/content-performance"><button>Content Performance</button></a>
 
-    <a href="/prompts/content-promotion-distribution"><button>Content Promotion
-        and Distribution</button></a>
+  <a href="/prompts/content-promotion-distribution"><button>Content Promotion
+      and Distribution</button></a>
 
-    <a href="/prompts/seo"><button>SEO Copywritting</button></a>
+  <a href="/prompts/seo"><button>SEO Copywritting</button></a>
 
-    <a href="/prompts/story-telling"><button>Story Telling</button></a>
+  <a href="/prompts/story-telling"><button>Story Telling</button></a>
 
-  </div>
+</div>
 
-  {{#each prompts}}
-    <div class="prompts">
-      <h3>{{tag}}</h3>
-      <p>{{definition}}</p>
-      <a href="/prompts/{{id}}">Ver detalles</a>
+<h2>Available prompts</h2>
+
+{{#each prompts}}
+  <div class="prompts">
+    <h3>{{tag}}</h3>
+    <p>{{definition}}</p>
+    <a href="/prompts/{{id}}" class="promptPalButtonPrompts">Ver detalles</a>
+    <a
+      href="/prompts/{{id}}/queries"
+      class="promptPalButtonPrompts"
+    >Consultas</a>
+    <a href="/prompts/{{id}}/edit" class="promptPalButtonPrompts">Editar</a>
+
+    <form action="/prompts/{{id}}/delete" method="post">
+    <button class="promptPalButton">Eliminar</button>
+    </form>
     </div>
-  {{/each}}
-
-{{else}}
-
-  <h3>¿Todavía no has creado ni utilizado ningún prompt?</h3>
-
-  <p>Utiliza tu primer prompt
-    <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a><br
-    /><br />
-    o créalo desde cero
-    <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a></p>
-
-{{/if}}
+  </div>
+{{/each}}

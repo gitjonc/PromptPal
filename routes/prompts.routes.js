@@ -8,13 +8,15 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
 router.get("/", isLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser._id;
+  console.log(user);
   Prompt.find()
     .sort({ createdAt: -1 })
     .then((allPrompts) => {
       res.render(
         "prompts/prompts.hbs",
 
-        { prompts: allPrompts }
+        { user, prompts: allPrompts }
       );
     })
     .catch((error) => {
@@ -116,7 +118,7 @@ router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser._id;
   Prompt.find({ user: user }).then((allPrompts) => {
     console.log(allPrompts);
-    res.render("prompts/prompts.hbs", { prompts: allPrompts });
+    res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
   });
 });
 
@@ -133,7 +135,6 @@ router.get("/:promptId/edit", isLoggedIn, (req, res, next) => {
   const { promptId } = req.params;
   Prompt.findById(promptId)
     .then((promptToEdit) => {
-      console.log(promptToEdit);
       res.render("prompts/edited-prompt.hbs", { promptToEdit });
     })
     .catch((error) => next(error));
@@ -142,7 +143,8 @@ router.get("/:promptId/edit", isLoggedIn, (req, res, next) => {
 router.post("/:promptId/edit", isLoggedIn, (req, res, next) => {
   const { promptId } = req.params;
   const { tag, definition } = req.body;
-  Prompt.create({ tag, definition })
+  const user = req.session.currentUser._id;
+  Prompt.create({ tag, definition, user })
     .then(() => res.redirect("/prompts"))
     .catch((error) => next(error));
 });
@@ -155,9 +157,5 @@ router.post("/:promptId/delete", isLoggedIn, (req, res, next) => {
     })
     .catch((error) => next(error));
 });
-
-//  router.get("/mis-prompts", isLoggedIn, (req, res) => {
-
-//  });
 
 module.exports = router;

@@ -8,7 +8,6 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
 router.get("/", isLoggedIn, (req, res, next) => {
-  // console.log("----->", req.session.currentUser.email);
   Prompt.find()
     .sort({ createdAt: -1 })
     .then((allPrompts) => {
@@ -114,8 +113,11 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
 });
 
 router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
-  console.log();
-  res.render("prompts/prompts.hbs");
+  const user = req.session.currentUser._id;
+  Prompt.find({ user: user }).then((allPrompts) => {
+    console.log(allPrompts);
+    res.render("prompts/prompts.hbs", { prompts: allPrompts });
+  });
 });
 
 router.get("/:promptId", isLoggedIn, (req, res) => {

@@ -1,32 +1,47 @@
-<h2>Available prompts</h2>
+{{#if prompts}}
 
-<a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
+  <h2>Available prompts</h2>
 
-<a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis prompts</button></a>
+  <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
 
-<div class="flex">
+  <a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis
+      prompts</button></a>
 
-  <a href="/prompts"><button>Ver todos</button></a>
+  <div class="flex">
 
-  <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
+    <a href="/prompts"><button>Ver todos</button></a>
 
-  <a href="/prompts/content-creation"><button>Content Creation</button></a>
+    <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
 
-  <a href="/prompts/content-performance"><button>Content Performance</button></a>
+    <a href="/prompts/content-creation"><button>Content Creation</button></a>
 
-  <a href="/prompts/content-promotion-distribution"><button>Content Promotion
-      and Distribution</button></a>
+    <a href="/prompts/content-performance"><button>Content Performance</button></a>
 
-  <a href="/prompts/seo"><button>SEO Copywritting</button></a>
+    <a href="/prompts/content-promotion-distribution"><button>Content Promotion
+        and Distribution</button></a>
 
-  <a href="/prompts/story-telling"><button>Story Telling</button></a>
+    <a href="/prompts/seo"><button>SEO Copywritting</button></a>
 
-</div>
+    <a href="/prompts/story-telling"><button>Story Telling</button></a>
 
-{{#each prompts}}
-  <div class="prompts">
-    <h3>{{tag}}</h3>
-    <p>{{definition}}</p>
-    <a href="/prompts/{{id}}">Ver detalles</a>
   </div>
-{{/each}}
+
+  {{#each prompts}}
+    <div class="prompts">
+      <h3>{{tag}}</h3>
+      <p>{{definition}}</p>
+      <a href="/prompts/{{id}}">Ver detalles</a>
+    </div>
+  {{/each}}
+
+{{else}}
+
+  <h3>¿Todavía no has creado ni utilizado ningún prompt?</h3>
+
+  <p>Utiliza tu primer prompt
+    <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a><br
+    /><br />
+    o créalo desde cero
+    <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a></p>
+
+{{/if}}

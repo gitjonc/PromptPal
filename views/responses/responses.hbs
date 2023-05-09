@@ -18,16 +18,15 @@
 
 <a href="/responses/story-telling"><button>Story Telling</button></a> }}
 
-<label for="tags">Choose a tag:</label>
-
-<select name="tags" id="tags">
-  <option value="Buyer Persona">Buyer Persona</option>
-  <option value="Content Creation">Content Creation</option>
-  <option value="Content Performance">Content Performance</option>
-  <option value="Content Promotion and Distribution">Content Promotion and Distribution</option>
-  <option value="SEO Copywritting">SEO Copywritting</option>
-  <option value="Story Telling">Story Telling</option>
-</select>
+<form action="/responses" method="POST">
+  <label for="tags">Choose a tag:</label>
+  <select name="tag" id="tags">
+    {{#each tags}}
+      <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <button type="submit">Filtrar</button>
+</form>
 
 {{#each responses}}
   <div class="prompts">

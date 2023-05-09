@@ -172,6 +172,12 @@ nav a {
   display: flex;
 }
 
+.bin img {
+  width: 40px;
+  height: auto;
+  margin: 0 0 0 0;
+}
+
 .response {
   background-color: #fdd587;
 }

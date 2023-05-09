@@ -1,6 +1,6 @@
-<h2>{{prompt.tag}} prompt</h2>
+<a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
 
-  <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
+<a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis prompts</button></a>
 
 <div class="flex">
 
@@ -29,15 +29,7 @@
   <div class="flex">
   <a href="/prompts/{{prompt._id}}/edit" class="promptPal"><button
       class="promptPalButton"
-    >Editar</button></a>
-  <a href="/ask/{{prompt._id}}" class="promptPal"><button
-      class="promptPalButton"
-    >Enviar</button></a>
-  <form action="/prompts/{{prompt._id}}/delete" method="post">
-    <button class="promptPalButton">Eliminar</button>
-    </div>
-  </form>
-
+    >Seleccionar</button></a>
 </div>
 
 

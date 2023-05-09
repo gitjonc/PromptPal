@@ -29,18 +29,23 @@
     <div class="prompts">
       <h3>{{tag}}</h3>
       <p>{{definition}}</p>
+      <p><b>Creado</b>: {{createdAt}}</p>
+      <p><b>Actualizado</b>: {{updatedAt}}</p>
       <a href="/ask/{{id}}" class="promptPalButtonPrompts">Consultar</a>
       <a
         href="/prompts/{{id}}/queries"
         class="promptPalButtonPrompts"
       >Consultas</a>
       <a href="/prompts/{{id}}/edit" class="promptPalButtonPrompts">Editar</a>
-      {{#if prompts._id === req.userInSession.id}}
-      <form action="/prompts/{{prompt._id}}/delete" method="post">
-    <button class="promptPalButtonPrompts">Eliminar</button>
-  </form>
-  {{/if}}
+      <p>
+        <form action="/prompts/{{id}}/delete" method="post">
+          <button type="submit" class="bin"><img
+              src="/images/delete.png"
+            /></button>
+
+        </form></p>
     </div>
+
   {{/each}}
 
 {{else}}
@@ -48,7 +53,7 @@
   <h3>¿Todavía no has creado ni utilizado ningún prompt?</h3>
 
   <p>Utiliza tu primer prompt
-    <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a><br
+    <a href="/prompts"><button class="promptPalCreateButton">Buscar prompt</button></a><br
     /><br />
     o créalo desde cero
     <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a></p>

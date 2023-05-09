@@ -29,16 +29,8 @@
   <div class="prompts">
     <h3>{{tag}}</h3>
     <p>{{definition}}</p>
-    <a href="/prompts/{{id}}" class="promptPalButtonPrompts">Ver detalles</a>
-    <a
-      href="/prompts/{{id}}/queries"
-      class="promptPalButtonPrompts"
-    >Consultas</a>
-    <a href="/prompts/{{id}}/edit" class="promptPalButtonPrompts">Editar</a>
+    <p>
+      <a href="/prompts/{{id}}" class="promptPalButtonPrompts">Ver detalles</a>
 
-    <form action="/prompts/{{id}}/delete" method="post">
-    <button class="promptPalButton">Eliminar</button>
-    </form>
-    </div>
   </div>
 {{/each}}

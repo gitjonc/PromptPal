@@ -19,24 +19,11 @@ router.get("/", isLoggedIn, (req, res, next) => {
     });
 });
 
-router.get("/:responseId", isLoggedIn, (req, res) => {
+router.get("/:response", isLoggedIn, (req, res) => {
   const { responseId } = req.params;
-  Response.findById(responseId)
+  Response.findById(response)
     .then((response) => {
       res.render("responses/response.hbs", { response });
-      console.log({ responseId });
-      console.log(req.params);
-    })
-    .catch((err) => console.log(err));
-});
-
-router.get("/my-responses", isLoggedIn, (req, res) => {
-  const { responseId } = req.params;
-  Response.findById(responseId)
-    .then((response) => {
-      res.render("responses/response.hbs", { response });
-      console.log({ responseId });
-      console.log(req.params);
     })
     .catch((err) => console.log(err));
 });

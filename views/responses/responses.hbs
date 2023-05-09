@@ -6,7 +6,7 @@
 
 <a href="/responses"><button>Ver todas</button></a>
 
-<a href="/responses/buyer-persona"><button>Buyer Persona</button></a>
+{{! <a href="/responses/buyer-persona"><button>Buyer Persona</button></a>
 
 <a href="/responses/content-creation"><button>Content Creation</button></a>
 
@@ -16,7 +16,18 @@
 
 <a href="/responses/seo"><button>SEO Copywritting</button></a>
 
-<a href="/responses/story-telling"><button>Story Telling</button></a>
+<a href="/responses/story-telling"><button>Story Telling</button></a> }}
+
+<label for="tags">Choose a tag:</label>
+
+<select name="tags" id="tags">
+  <option value="Buyer Persona">Buyer Persona</option>
+  <option value="Content Creation">Content Creation</option>
+  <option value="Content Performance">Content Performance</option>
+  <option value="Content Promotion and Distribution">Content Promotion and Distribution</option>
+  <option value="SEO Copywritting">SEO Copywritting</option>
+  <option value="Story Telling">Story Telling</option>
+</select>
 
 {{#each responses}}
   <div class="prompts">

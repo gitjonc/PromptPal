@@ -12,6 +12,7 @@ const promptSchema = new Schema(
     },
     responses: [{ type: Schema.Types.ObjectId, ref: "Response" }],
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    prompt: { type: Schema.Types.ObjectId, ref: "Prompt" },
   },
   {
     timestamps: true,

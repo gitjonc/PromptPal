@@ -32,11 +32,12 @@ router.post("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.get("/:responseId", isLoggedIn, (req, res) => {
+router.get("/:response", isLoggedIn, (req, res) => {
   const { responseId } = req.params;
-  Response.findById(responseId)
+  Response.findById(response)
     .then((response) => {
       res.render("responses/response.hbs", { response });
+<<<<<<< HEAD
     })
     .catch((err) => console.log(err));
 });
@@ -46,6 +47,8 @@ router.get("/:responseId/delete", isLoggedIn, (req, res, next) => {
   Response.findByIdAndDelete(responseId)
     .then(() => {
       res.redirect("/responses");
+=======
+>>>>>>> jonbranch
     })
     .catch((error) => next(error));
 });

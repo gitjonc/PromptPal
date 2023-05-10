@@ -17,6 +17,7 @@ body {
 
 a {
   color: #5ed9a7;
+  text-decoration: none;
 }
 
 h1 {
@@ -174,6 +175,12 @@ h3 {
   display: flex;
 }
 
+.bin img {
+  width: 40px;
+  height: auto;
+  margin: 0 0 0 0;
+}
+
 .response {
   background-color: #fdd587;
 }
@@ -206,4 +213,25 @@ h3 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+
+.promptPalButtonPrompts {
+  color: black;
+      background-color: #5ed9a7;
+      font-weight: 600;
+      padding: 6px;
+      align-items: center;
+      margin: 12px;
+      border: 1px solid black;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+}
+
+.flex a {
+  justify-content: space-around;
+
 }

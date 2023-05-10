@@ -8,7 +8,7 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
 router.get("/", isLoggedIn, (req, res, next) => {
-  Prompt.find()
+  Prompt.find({ user: { $exists: false } })
     .sort({ createdAt: -1 })
     .then((allPrompts) => {
       res.render(
@@ -29,12 +29,11 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 });
 
 router.post("/create", isLoggedIn, (req, res, next) => {
-  const { promptId } = req.params;
   const { tag, definition } = req.body;
   const user = req.session.currentUser._id;
   console.log(user);
   Prompt.create({ tag, definition, user })
-    .then(() => res.redirect("/prompts"))
+    .then(() => res.redirect("/prompts/mis-prompts"))
     .catch((error) => next(error));
 });
 
@@ -46,7 +45,7 @@ router.get("/buyer-persona", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: bpPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -58,7 +57,7 @@ router.get("/content-creation", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: ccacPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -70,7 +69,7 @@ router.get("/content-performance", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: cpPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -82,7 +81,7 @@ router.get("/content-promotion-distribution", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: cpadPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -94,7 +93,7 @@ router.get("/seo", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: seocPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -106,7 +105,7 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: mksPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -114,50 +113,66 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
 
 router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser._id;
-  Prompt.find({ user: user }).then((allPrompts) => {
-    console.log(allPrompts);
-    res.render("prompts/prompts.hbs", { prompts: allPrompts });
-  });
+  Prompt.find({ user: user })
+    .then((allPrompts) => {
+      console.log(allPrompts);
+      res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
+    })
+    .catch((err) => console.log(err));
 });
 
-router.get("/:promptId", isLoggedIn, (req, res) => {
-  const { promptId } = req.params;
-  Prompt.findById(promptId)
+router.get("/:prompt", isLoggedIn, (req, res) => {
+  const { prompt } = req.params;
+  Prompt.findById(prompt)
     .then((prompt) => {
       res.render("prompts/prompt.hbs", { prompt });
     })
     .catch((err) => console.log(err));
 });
 
-router.get("/:promptId/edit", isLoggedIn, (req, res, next) => {
-  const { promptId } = req.params;
-  Prompt.findById(promptId)
+router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
+  const { prompt } = req.params;
+  Prompt.findById(prompt)
+    .then((prompt) => {
+      res.render("prompts/related-prompts.hbs", { relatedPrompt: prompt });
+    })
+    .catch((err) => console.log(err));
+});
+
+// router.get("/:prompt/queries", isLoggedIn, (req, res, next) => {
+//   const { prompt } = req.params;
+//   Prompt.find({ prompt: ObjectId(prompt) })
+//     .then((associatedQueries) => {
+//       console.log(associatedQueries);
+//     })
+//     .catch((err) => console.log(err));
+// });
+
+router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
+  const { prompt } = req.params;
+  Prompt.findById(prompt)
     .then((promptToEdit) => {
-      console.log(promptToEdit);
       res.render("prompts/edited-prompt.hbs", { promptToEdit });
     })
     .catch((error) => next(error));
 });
 
-router.post("/:promptId/edit", isLoggedIn, (req, res, next) => {
-  const { promptId } = req.params;
+router.post("/:prompt/edit", isLoggedIn, (req, res, next) => {
+  const { prompt } = req.params;
   const { tag, definition } = req.body;
-  Prompt.create({ tag, definition })
-    .then(() => res.redirect("/prompts"))
+  const user = req.session.currentUser._id;
+  Prompt.create({ tag, definition, user, prompt })
+    .then(() => res.redirect("/prompts/mis-prompts"))
     .catch((error) => next(error));
 });
 
-router.post("/:promptId/delete", isLoggedIn, (req, res, next) => {
-  const { promptId } = req.params;
-  Prompt.findByIdAndDelete(promptId)
+router.post("/:prompt/delete", isLoggedIn, (req, res, next) => {
+  const { prompt } = req.params;
+  Prompt.findByIdAndDelete(prompt)
     .then(() => {
-      res.redirect("/prompts");
+      res.redirect("/prompts/mis-prompts");
     })
     .catch((error) => next(error));
 });
-
-//  router.get("/mis-prompts", isLoggedIn, (req, res) => {
-
-//  });
 
 module.exports = router;

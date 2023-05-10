@@ -23,9 +23,9 @@
 
 </div>
 
-<h2>Available prompts</h2>
+<h2>Prompt original</h2>
 
-{{#each prompts}}
+{{#with relatedPrompt}}
   <div class="prompts">
     <h3>{{tag}}</h3>
     <p>{{definition}}</p>
@@ -33,4 +33,4 @@
       <a href="/prompts/{{id}}" class="promptPalButtonPrompts">Ver detalles</a>
 
   </div>
-{{/each}}
+{{/with}}

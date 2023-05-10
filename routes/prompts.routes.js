@@ -115,6 +115,7 @@ router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser._id;
   Prompt.find({ user: user })
     .then((allPrompts) => {
+      console.log(allPrompts);
       res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
     })
     .catch((err) => console.log(err));
@@ -129,19 +130,23 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/:prompt/queries", isLoggedIn, (req, res, next) => {
-  // Prompt.find({ prompt: { $exists: true } })
+router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
   Prompt.findById(prompt)
-    .populate("prompt")
     .then((prompt) => {
-      Prompt.findById(prompt.prompt._id).then((relatedPrompt) => {
-        console.log("---->", relatedPrompt);
-        res.render("prompts/related-prompts.hbs", { relatedPrompt });
-      });
+      res.render("prompts/related-prompts.hbs", { relatedPrompt: prompt });
     })
     .catch((err) => console.log(err));
 });
+
+// router.get("/:prompt/queries", isLoggedIn, (req, res, next) => {
+//   const { prompt } = req.params;
+//   Prompt.find({ prompt: ObjectId(prompt) })
+//     .then((associatedQueries) => {
+//       console.log(associatedQueries);
+//     })
+//     .catch((err) => console.log(err));
+// });
 
 router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;

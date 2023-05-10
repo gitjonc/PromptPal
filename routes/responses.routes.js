@@ -37,7 +37,6 @@ router.get("/:response", isLoggedIn, (req, res) => {
   Response.findById(response)
     .then((response) => {
       res.render("responses/response.hbs", { response });
-<<<<<<< HEAD
     })
     .catch((err) => console.log(err));
 });
@@ -47,8 +46,6 @@ router.get("/:responseId/delete", isLoggedIn, (req, res, next) => {
   Response.findByIdAndDelete(responseId)
     .then(() => {
       res.redirect("/responses");
-=======
->>>>>>> jonbranch
     })
     .catch((error) => next(error));
 });

@@ -45,7 +45,7 @@ router.get("/buyer-persona", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: bpPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -57,7 +57,7 @@ router.get("/content-creation", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: ccacPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -69,7 +69,7 @@ router.get("/content-performance", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: cpPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -81,7 +81,7 @@ router.get("/content-promotion-distribution", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: cpadPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -93,7 +93,7 @@ router.get("/seo", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: seocPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -105,7 +105,7 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
       res.render("prompts/prompts.hbs", { prompts: mksPrompts });
     })
     .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
+      console.log("Error while getting the prompts from the DB: ", error);
 
       next(error);
     });
@@ -113,9 +113,11 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
 
 router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser._id;
-  Prompt.find({ user: user }).then((allPrompts) => {
-    res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
-  });
+  Prompt.find({ user: user })
+    .then((allPrompts) => {
+      res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
+    })
+    .catch((err) => console.log(err));
 });
 
 router.get("/:prompt", isLoggedIn, (req, res) => {
@@ -128,11 +130,17 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
 });
 
 router.get("/:prompt/queries", isLoggedIn, (req, res, next) => {
-  Prompt.find({ prompt: { $exists: true } })
-    .populate(prompt)
+  // Prompt.find({ prompt: { $exists: true } })
+  const { prompt } = req.params;
+  Prompt.findById(prompt)
+    .populate("prompt")
     .then((prompt) => {
-      console.log(prompt);
-    });
+      Prompt.findById(prompt.prompt._id).then((relatedPrompt) => {
+        console.log("---->", relatedPrompt);
+        res.render("prompts/related-prompts.hbs", { relatedPrompt });
+      });
+    })
+    .catch((err) => console.log(err));
 });
 
 router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {

@@ -1,0 +1,36 @@
+<div><a href="/prompts/create"><button class="promptPalCreateButton">Crear
+      prompt</button></a>
+
+  <a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis
+      prompts</button></a></div>
+
+<div class="flex">
+
+  <a href="/prompts"><button>Ver todos</button></a>
+
+  <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
+
+  <a href="/prompts/content-creation"><button>Content Creation</button></a>
+
+  <a href="/prompts/content-performance"><button>Content Performance</button></a>
+
+  <a href="/prompts/content-promotion-distribution"><button>Content Promotion
+      and Distribution</button></a>
+
+  <a href="/prompts/seo"><button>SEO Copywritting</button></a>
+
+  <a href="/prompts/story-telling"><button>Story Telling</button></a>
+
+</div>
+
+<h2>Related prompt</h2>
+
+{{#with relatedPrompt}}
+  <div class="prompts">
+    <h3>{{tag}}</h3>
+    <p>{{definition}}</p>
+    <p>
+      <a href="/prompts/{{id}}" class="promptPalButtonPrompts">Ver detalles</a>
+
+  </div>
+{{/with}}

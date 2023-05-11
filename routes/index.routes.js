@@ -56,8 +56,7 @@ router.post("/sign-up", isLoggedOut, async (req, res, next) => {
       res.status(500).render("auth/signup", { errorMessage: error.message });
     } else if (error.code === 11000) {
       res.status(500).render("auth/signup", {
-        errorMessage:
-          "El usuario y el email deben ser únicos, y alguno está en uso.",
+        errorMessage: "El usuario y el email deben ser únicos, y alguno está en uso.",
       });
     } else {
       next(error);
@@ -89,7 +88,7 @@ router.post("/log-in", isLoggedOut, async (req, res, next) => {
       });
       return;
     } else if (bcrypt.compareSync(password, user.password)) {
-      res.render("auth/profile", { user });
+      //res.render("auth/profile", { user });
       req.session.currentUser = user;
       res.redirect("/profile");
     }

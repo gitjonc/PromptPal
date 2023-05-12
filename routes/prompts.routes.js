@@ -143,7 +143,11 @@ router.get("/mis-prompts", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    res.render("prompts/prompts", { tags, prompts: promptsUpdated, prompts });
+    res.render("prompts/mis-prompts", {
+      tags,
+      prompts: promptsUpdated,
+      prompts,
+    });
   } catch (error) {
     next(error);
   }

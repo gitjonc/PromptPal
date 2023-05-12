@@ -56,7 +56,8 @@ router.post("/sign-up", isLoggedOut, async (req, res, next) => {
       res.status(500).render("auth/signup", { errorMessage: error.message });
     } else if (error.code === 11000) {
       res.status(500).render("auth/signup", {
-        errorMessage: "El usuario y el email deben ser únicos, y alguno está en uso.",
+        errorMessage:
+          "El usuario y el email deben ser únicos, y alguno está en uso.",
       });
     } else {
       next(error);
@@ -99,6 +100,32 @@ router.post("/log-in", isLoggedOut, async (req, res, next) => {
 
 router.get("/profile", isLoggedIn, (req, res) => {
   res.render("auth/profile", { userInSession: req.session.currentUser });
+});
+
+router.get("/edit-profile", isLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser;
+  User.findById(user._id).then((userOne) => {
+    console.log("----->", userOne);
+    res.render("auth/profile-account", userOne);
+  });
+});
+
+router.post("/edit-profile", isLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser;
+  const { username, email, password, industry } = req.body;
+  User.findByIdAndUpdate(user._id, {
+    username,
+    email,
+    password,
+    industry,
+  }).then(() => {
+    res.render("auth/profile-account", {
+      username,
+      email,
+      password,
+      industry,
+    });
+  });
 });
 
 // GET /log-out

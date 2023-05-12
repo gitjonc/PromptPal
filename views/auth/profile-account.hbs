@@ -1,0 +1,56 @@
+<div class="form">
+
+  <form action="/edit-profile" method="POST">
+    <h2>Editar cuenta</h2>
+    <label>
+      Usuario:
+      <input
+        type="text"
+        name="username"
+        placeholder="Your username"
+        value="{{username}}"
+      />
+    </label>
+
+    <label>
+      Email:
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email"
+        value="{{email}}"
+      />
+    </label>
+
+    <label>
+      Contraseña:
+      <input
+        type="password"
+        name="password"
+        placeholder="Your password"
+        value="{{password}}"
+      />
+    </label>
+
+    <label>
+      Imagen de perfil:
+      <input type="image" name="profilePic" />
+    </label>
+
+    <label>
+      Sector:
+      <input
+        type="text"
+        name="industry"
+        placeholder="Your industry"
+        value="{{industry}}"
+      />
+    </label>
+
+    <button type="submit" class="promptPalButton">Editar</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

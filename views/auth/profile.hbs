@@ -26,34 +26,10 @@
       </a>
     </div>
     <div class="singlediv2">
-      <h4>Edita tu perfil:</h4>
-      <img class="small" src="/images/user.png" />
+      <a href="/edit-profile">
+        <h4>Edita tu perfil:</h4>
+        <img class="small" src="/images/user.png" />
+      </a>
     </div>
   </div>
-
-{{else}}
-
-  <p>¡Debes iniciar sesión para acceder a tu perfil!</p>
-
-  <div class="form">
-    <form action="/log-in" method="POST">
-
-      <label>
-        Email
-        <input type="email" name="email" placeholder="Email" />
-      </label>
-
-      <label>
-        Contraseña
-        <input type="password" name="password" placeholder="Contraseña" />
-      </label>
-
-      <button type="submit" class="button">Iniciar sesión</button>
-
-      {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-      {{/if}}
-    </form>
-  </div>
-
 {{/if}}

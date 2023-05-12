@@ -7,7 +7,7 @@ const User = require("./../models/User.model");
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /prompts
-router.get("/", isLoggedIn, (req, res, next) => {
+router.get("/", isLoggedIn, async (req, res, next) => {
   Prompt.find({ user: { $exists: false } })
     .sort({ createdAt: -1 })
     .then((allPrompts) => {
@@ -22,6 +22,20 @@ router.get("/", isLoggedIn, (req, res, next) => {
 
       next(error);
     });
+  // try {
+  //   const tags = await Prompt.distinct("tag");
+  //   const prompts = await Prompt.find();
+  //   const promptsUpdated = prompts.map((el) => {
+  //     const element = el.toObject();
+  //     element.createdAt = element.createdAt.toLocaleDateString("es-ES");
+  //     element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
+  //     return element;
+  //   });
+  //   console.log(promptsUpdated[0]);
+  //   res.render("prompts/prompts", { tags, prompts: promptsUpdated, prompts });
+  // } catch (error) {
+  //   next(error);
+  // }
 });
 
 router.get("/create", isLoggedIn, (req, res, next) => {
@@ -126,6 +140,7 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
   Prompt.findById(prompt)
     .then((prompt) => {
       Prompt.find({ prompt: prompt }).then((asPrompt) => {
+        console.log(prompt);
         res.render("prompts/prompt.hbs", { prompt, asPrompt });
       });
     })
@@ -141,14 +156,20 @@ router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
 
 router.get("/:prompt/prompts", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
-  Prompt.find().then((allPrompts) => {
-    Prompt.find({ prompt: prompt }).then((asPrompt) => {
-      Prompt.findById(asPrompt).then((prompt) => {
-        res.render("prompts/associated-prompts.hbs", { prompt, asPrompt });
+  // Prompt.find().then((allPrompts) => {
+  Prompt.find({ prompt: prompt }).then((asPrompt) => {
+    Prompt.findById(prompt).then((originalPrompt) => {
+      console.log("prompt is: ", originalPrompt);
+      console.log("asprompt is: ", asPrompt);
+
+      res.render("prompts/associated-prompts.hbs", {
+        originalPrompt,
+        asPrompt,
       });
     });
   });
 });
+// });
 
 router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;

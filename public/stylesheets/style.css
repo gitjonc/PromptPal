@@ -189,11 +189,14 @@ h3 {
 
 .response {
   background-color: #fdd587;
+  text-align: left;
+
 }
 
 .definition {
   background-color: aquamarine;
   padding: 10px;
+  text-align: left;
 }
 
 .definitionEdit {

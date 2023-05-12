@@ -6,36 +6,32 @@ const User = require("./../models/User.model");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
-//GET /prompts
 router.get("/", isLoggedIn, async (req, res, next) => {
-  Prompt.find({ user: { $exists: false } })
-    .sort({ createdAt: -1 })
-    .then((allPrompts) => {
-      res.render(
-        "prompts/prompts.hbs",
-
-        { prompts: allPrompts }
-      );
-    })
-    .catch((error) => {
-      console.log("Error while getting the books from the DB: ", error);
-
-      next(error);
+  try {
+    const tags = await Prompt.distinct("tag");
+    const prompts = await Prompt.find();
+    const promptsUpdated = prompts.map((el) => {
+      const element = el.toObject();
+      element.createdAt = element.createdAt.toLocaleDateString("es-ES");
+      element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
+      return element;
     });
-  // try {
-  //   const tags = await Prompt.distinct("tag");
-  //   const prompts = await Prompt.find();
-  //   const promptsUpdated = prompts.map((el) => {
-  //     const element = el.toObject();
-  //     element.createdAt = element.createdAt.toLocaleDateString("es-ES");
-  //     element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
-  //     return element;
-  //   });
-  //   console.log(promptsUpdated[0]);
-  //   res.render("prompts/prompts", { tags, prompts: promptsUpdated, prompts });
-  // } catch (error) {
-  //   next(error);
-  // }
+    console.log(promptsUpdated[0]);
+    res.render("prompts/prompts", { tags, prompts: promptsUpdated });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/", isLoggedIn, async (req, res, next) => {
+  try {
+    const tags = await Prompt.distinct("tag");
+    const tag = req.body.tag;
+    const prompts = await Prompt.find({ tag: tag });
+    res.render("prompts/prompts", { tags, prompts });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/create", isLoggedIn, (req, res, next) => {
@@ -125,14 +121,32 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
     });
 });
 
-router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
-  const user = req.session.currentUser._id;
-  Prompt.find({ user: user })
-    .then((allPrompts) => {
-      console.log(allPrompts);
-      res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
-    })
-    .catch((err) => console.log(err));
+// router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
+//   const user = req.session.currentUser._id;
+//   Prompt.find({ user: user })
+//     .then((allPrompts) => {
+//       console.log(allPrompts);
+//       res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
+//     })
+//     .catch((err) => console.log(err));
+// });
+
+//Empiezan mis prompts
+router.get("/mis-prompts", isLoggedIn, async (req, res, next) => {
+  try {
+    const user = req.session.currentUser._id;
+    const tags = await Prompt.distinct("tag");
+    const prompts = await Prompt.find({ user: user });
+    const promptsUpdated = prompts.map((el) => {
+      const element = el.toObject();
+      element.createdAt = element.createdAt.toLocaleDateString("es-ES");
+      element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
+      return element;
+    });
+    res.render("prompts/prompts", { tags, prompts: promptsUpdated, prompts });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/:prompt", isLoggedIn, (req, res) => {

@@ -24,20 +24,22 @@
 <div class="mainPrompt">
   <h2>Original prompt</h2>
   {{#with originalPrompt}}
-    <p class="definition">{{tag}}</p>
-    <p class="definition">{{definition}}</p>
-    <p class="response">{{responses}}</p>
+    <p class="definition"><b>TAG</b>:<br /> {{tag}}</p>
+    <p class="definition"><b>Definition</b>:<br />{{definition}}</p>
+    <p class="response"><b>Responses</b>:<br />{{responses}}</p>
   {{/with}}
-
+  <a href="/prompts/{{originalPrompt._id}}/edit" class="promptPal"><button
+      class="promptPalButton"
+    >Utilizar</button></a>
 </div>
 
 {{#each asPrompt}}
   <div class="prompts">
-    <h4>{{tag}} (<i>{{_id}}</i>)</h4>
+    <h4>{{tag}}<br />(<i>{{_id}}</i>)</h4>
     <p class="definition">{{definition}}</p>
     <p class="response">{{responses}}</p>
 
-    <a href="/prompts/{{prompt._id}}/edit" class="promptPal"><button
+    <a href="/prompts/{{_id}}/edit" class="promptPal"><button
         class="promptPalButton"
       >Utilizar</button></a>
   </div>

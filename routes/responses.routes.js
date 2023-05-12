@@ -33,7 +33,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
 });
 
 router.get("/:response", isLoggedIn, (req, res) => {
-  const { responseId } = req.params;
+  const { response } = req.params;
   Response.findById(response)
     .then((response) => {
       res.render("responses/response.hbs", { response });

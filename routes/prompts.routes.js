@@ -125,28 +125,30 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
   const { prompt } = req.params;
   Prompt.findById(prompt)
     .then((prompt) => {
-      res.render("prompts/prompt.hbs", { prompt });
+      Prompt.find({ prompt: prompt }).then((asPrompt) => {
+        res.render("prompts/prompt.hbs", { prompt, asPrompt });
+      });
     })
     .catch((err) => console.log(err));
 });
 
 router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
-  Prompt.findById(prompt)
-    .then((prompt) => {
-      res.render("prompts/related-prompts.hbs", { relatedPrompt: prompt });
-    })
-    .catch((err) => console.log(err));
+  Prompt.findById(prompt).then((prompt) => {
+    res.render("prompts/related-prompts.hbs", { prompt });
+  });
 });
 
-// router.get("/:prompt/queries", isLoggedIn, (req, res, next) => {
-//   const { prompt } = req.params;
-//   Prompt.find({ prompt: ObjectId(prompt) })
-//     .then((associatedQueries) => {
-//       console.log(associatedQueries);
-//     })
-//     .catch((err) => console.log(err));
-// });
+router.get("/:prompt/prompts", isLoggedIn, (req, res, next) => {
+  const { prompt } = req.params;
+  Prompt.find().then((allPrompts) => {
+    Prompt.find({ prompt: prompt }).then((asPrompt) => {
+      Prompt.findById(asPrompt).then((prompt) => {
+        res.render("prompts/associated-prompts.hbs", { prompt, asPrompt });
+      });
+    });
+  });
+});
 
 router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
@@ -168,6 +170,7 @@ router.post("/:prompt/edit", isLoggedIn, (req, res, next) => {
 
 router.post("/:prompt/delete", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
+
   Prompt.findByIdAndDelete(prompt)
     .then(() => {
       res.redirect("/prompts/mis-prompts");

@@ -20,21 +20,23 @@
   <a href="/prompts/story-telling"><button>Story Telling</button></a>
 
 </div>
+{{#with prompt}}
+  <div class="mainPrompt">
+    <h2>Original prompt</h2>
+    <p class="definition">{{tag}}</p>
+    <p class="definition">{{definition}}</p>
+    <p class="response">{{prompt.responses}}</p>
+  </div>
+{{/with}}
 
-<h2>{{prompt.tag}}</h2>
+{{#each asPrompt}}
+  <div class="prompts">
+    <h4>{{_id}}</h4>
+    <p class="definition">{{definition}}</p>
+    <p class="response">{{responses}}</p>
 
-<div class="prompts">
-  <p class="definition">{{prompt.definition}}</p>
-  <p class="response">{{prompt.responses}}</p>
-  <div class="flex">
-  <a href="/prompts/{{prompt._id}}/edit" class="promptPal"><button
-      class="promptPalButton"
-    >Seleccionar</button></a>
-    {{#if asPrompt}}
-  <a href="/prompts/{{prompt._id}}/prompts" class="promptPal"><button
-      class="promptPalButton"
-    >Ver consultas</button></a>
-    {{/if}}
-</div>
-
-
+    <a href="/prompts/{{prompt._id}}/edit" class="promptPal"><button
+        class="promptPalButton"
+      >Seleccionar</button></a>
+  </div>
+{{/each}}

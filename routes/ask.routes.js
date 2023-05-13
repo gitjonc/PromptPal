@@ -24,28 +24,16 @@ router.get("/:promptId", isLoggedIn, async (req, res, next) => {
 
 router.post("/:promptId", isLoggedIn, async (req, res, next) => {
   try {
-    const id = req.params.promptId;
-    const definition = req.body.prompt;
-    let response = await question(definition);
-    response = response.data.choices[0].message.content;
-    res.render("ask/ask", { definition, id, response });
-  } catch (error) {
-    next(error);
-  }
-});
-
-//POST save information
-
-router.post("/save/:promptId", isLoggedIn, async (req, res, next) => {
-  try {
-    const query = req.body.prompt;
-    const chatGPTresponse = req.body.response;
     const prompt = req.params.promptId;
+    const query = req.body.prompt;
+    let response = await question(query);
+    const chatGPTresponse = response.data.choices[0].message.content;
     let tag = await Prompt.findById(prompt);
     tag = tag.tag;
     const user = req.session.currentUser._id;
-    await Response.create({ query, chatGPTresponse, prompt, tag, user });
-    res.redirect("/prompts");
+    let responseId = await Response.create({ query, chatGPTresponse, prompt, tag, user });
+    responseId = responseId._id;
+    res.redirect(`/responses/${responseId}`);
   } catch (error) {
     next(error);
   }

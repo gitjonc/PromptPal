@@ -105,7 +105,6 @@ router.get("/profile", isLoggedIn, (req, res) => {
 router.get("/edit-profile", isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
   User.findById(user._id).then((userOne) => {
-    console.log("----->", userOne);
     res.render("auth/profile-account", userOne);
   });
 });

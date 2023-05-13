@@ -4,7 +4,7 @@
 
 <div class="mainPrompt">
   <h2>Original prompt</h2>
-  {{#with originalPrompt}}
+  {{#with mainPrompt}}
     <p class="definition"><b>TAG</b>:<br /> {{tag}}</p>
     <p class="definition"><b>Definition</b>:<br />{{definition}}</p>
     {{#if responses}}
@@ -16,14 +16,13 @@
     >Utilizar</button></a>
 </div>
 
-{{#each asPrompt}}
-  <div class="prompts">
-    <h4>{{tag}}<br /></h4>
-    <p class="definition">{{definition}}</p>
-    <p class="response">{{responses}}</p>
+{{#if responses}}
+  <h2>Respuestas</h2>
+{{/if}}
 
-    <a href="/prompts/{{_id}}/edit" class="promptPal"><button
-        class="promptPalButton"
-      >Utilizar</button></a>
-  </div>
+{{#each responses}}
+  <p class="definition"><b>TAG</b>:<br /> {{tag}}</p>
+  <p class="definition"><b>Query</b>:<br />{{query}}</p>
+  <p class="definition"><b>chatGPTresponse</b>:<br />{{chatGPTresponse}}</p>
+  <p class="definition"><b>Query</b>:<br />{{query}}</p>
 {{/each}}

@@ -1,25 +1,4 @@
-<a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
-
-<a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis prompts</button></a>
-
-<div class="flex">
-
-  <a href="/prompts"><button>Ver todos</button></a>
-
-  <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
-
-  <a href="/prompts/content-creation"><button>Content Creation</button></a>
-
-  <a href="/prompts/content-performance"><button>Content Performance</button></a>
-
-  <a href="/prompts/content-promotion-distribution"><button>Content Promotion
-      and Distribution</button></a>
-
-  <a href="/prompts/seo"><button>SEO Copywritting</button></a>
-
-  <a href="/prompts/story-telling"><button>Story Telling</button></a>
-
-</div>
+<h2>Mis prompts</h2>
 
 {{#if prompts}}
 
@@ -33,7 +12,10 @@
     <button type="submit">Filtrar</button>
   </form>
 
-  <h2>Mis prompts</h2>
+  <div><a href="/prompts/create"><button class="promptPalCreateButton">Crear
+        prompt</button></a>
+    <a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis
+        prompts</button></a></div>
 
   {{#each prompts}}
     <div class="prompts">
@@ -41,12 +23,14 @@
       <p>{{definition}}</p>
       <p><b>Creado</b>: {{createdAt}}</p>
       <p><b>Actualizado</b>: {{updatedAt}}</p>
-      <a href="/ask/{{id}}" class="promptPalButtonPrompts">Consultar</a>
+      <a href="/ask/{{_id}}" class="promptPalButtonPrompts">Consultar</a>
       {{#if prompt}}
-        <a href="/prompts/{{prompt}}" class="promptPalButtonPrompts">Prompt
-          original</a>
+        <a
+          href="/prompts/{{prompt}}/prompts"
+          class="promptPalButtonPrompts"
+        >Consultas</a>
       {{/if}}
-      <a href="/prompts/{{id}}/edit" class="promptPalButtonPrompts">Editar</a>
+      <a href="/prompts/{{_id}}/edit" class="promptPalButtonPrompts">Editar</a>
       <p>
         <form action="/prompts/{{id}}/delete" method="post">
           <button type="submit" class="bin"><img

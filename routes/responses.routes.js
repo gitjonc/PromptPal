@@ -14,7 +14,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    console.log(responsesUpdated[0]);
     res.render("responses/responses", { tags, responses: responsesUpdated });
   } catch (error) {
     next(error);

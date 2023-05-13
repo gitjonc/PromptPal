@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const Prompt = require("./../models/Prompt.model");
 const User = require("./../models/User.model");
+const Response = require("./../models/Response.model");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
@@ -16,7 +17,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    console.log(promptsUpdated[0]);
     res.render("prompts/prompts", { tags, prompts: promptsUpdated });
   } catch (error) {
     next(error);
@@ -41,7 +41,6 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 router.post("/create", isLoggedIn, (req, res, next) => {
   const { tag, definition } = req.body;
   const user = req.session.currentUser._id;
-  console.log(user);
   Prompt.create({ tag, definition, user })
     .then(() => res.redirect("/prompts/mis-prompts"))
     .catch((error) => next(error));
@@ -121,32 +120,22 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
     });
 });
 
-// router.get("/mis-prompts", isLoggedIn, (req, res, next) => {
-//   const user = req.session.currentUser._id;
-//   Prompt.find({ user: user })
-//     .then((allPrompts) => {
-//       console.log(allPrompts);
-//       res.render("prompts/mis-prompts.hbs", { prompts: allPrompts });
-//     })
-//     .catch((err) => console.log(err));
-// });
-
-//Empiezan mis prompts
 router.get("/mis-prompts", isLoggedIn, async (req, res, next) => {
   try {
     const user = req.session.currentUser._id;
     const tags = await Prompt.distinct("tag");
-    const prompts = await Prompt.find({ user: user });
-    const promptsUpdated = prompts.map((el) => {
+    const promptos = await Prompt.find({ user: user });
+    const promptsUpdated = promptos.map((el) => {
       const element = el.toObject();
       element.createdAt = element.createdAt.toLocaleDateString("es-ES");
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
+
     res.render("prompts/mis-prompts", {
       tags,
       prompts: promptsUpdated,
-      prompts,
+      promptos,
     });
   } catch (error) {
     next(error);
@@ -158,7 +147,6 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
   Prompt.findById(prompt)
     .then((prompt) => {
       Prompt.find({ prompt: prompt }).then((asPrompt) => {
-        console.log(prompt);
         res.render("prompts/prompt.hbs", { prompt, asPrompt });
       });
     })
@@ -174,12 +162,8 @@ router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
 
 router.get("/:prompt/prompts", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
-  // Prompt.find().then((allPrompts) => {
   Prompt.find({ prompt: prompt }).then((asPrompt) => {
     Prompt.findById(prompt).then((originalPrompt) => {
-      console.log("prompt is: ", originalPrompt);
-      console.log("asprompt is: ", asPrompt);
-
       res.render("prompts/associated-prompts.hbs", {
         originalPrompt,
         asPrompt,
@@ -187,7 +171,13 @@ router.get("/:prompt/prompts", isLoggedIn, (req, res, next) => {
     });
   });
 });
-// });
+
+router.get("/:prompt/responses", isLoggedIn, async (req, res, next) => {
+  const { prompt } = req.params;
+  const mainPrompt = await Prompt.findById(prompt);
+  const responses = await Response.find({ prompt: prompt });
+  res.render("prompts/responses", { responses, prompt, mainPrompt });
+});
 
 router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;

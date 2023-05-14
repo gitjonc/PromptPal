@@ -24,8 +24,9 @@ const userSchema = new Schema(
     industry: {
       type: String,
     },
-    prompts: [{ type: Schema.Types.ObjectId, ref: "Prompt" }],
-    responses: [{ type: Schema.Types.ObjectId, ref: "Response" }],
+    profilePic: {
+      type: String,
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

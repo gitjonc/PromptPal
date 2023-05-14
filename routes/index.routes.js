@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 const User = require("./../models/User.model");
+const uploader = require("./../config/cloudinary.config");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
@@ -20,7 +21,7 @@ router.get("/sign-up", isLoggedOut, (req, res) => {
 });
 
 // POST /sign-up
-router.post("/sign-up", isLoggedOut, async (req, res, next) => {
+router.post("/sign-up", uploader.single("profilePic"), isLoggedOut, async (req, res, next) => {
   try {
     const { username, email, password, industry } = req.body;
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -46,18 +47,16 @@ router.post("/sign-up", isLoggedOut, async (req, res, next) => {
       });
       return;
     }
-
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    await User.create({ username, email, password: hashedPassword, industry });
+    await User.create({ username, email, password: hashedPassword, industry, profilePic: req.file.path });
     res.redirect("/profile");
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(500).render("auth/signup", { errorMessage: error.message });
     } else if (error.code === 11000) {
       res.status(500).render("auth/signup", {
-        errorMessage:
-          "El usuario y el email deben ser únicos, y alguno está en uso.",
+        errorMessage: "El usuario y el email deben ser únicos, y alguno está en uso.",
       });
     } else {
       next(error);
@@ -109,21 +108,22 @@ router.get("/edit-profile", isLoggedIn, (req, res, next) => {
   });
 });
 
-router.post("/edit-profile", isLoggedIn, (req, res, next) => {
+router.post("/edit-profile", uploader.single("profilePic"), isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
   const { username, email, password, industry } = req.body;
+  let pic = req.body.profilePicOld;
+  if (req.file != undefined) {
+    pic = req.file.path;
+  }
+
   User.findByIdAndUpdate(user._id, {
     username,
     email,
     password,
     industry,
+    profilePic: pic,
   }).then(() => {
-    res.render("auth/profile-account", {
-      username,
-      email,
-      password,
-      industry,
-    });
+    res.redirect("/edit-profile");
   });
 });
 

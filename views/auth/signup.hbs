@@ -1,6 +1,6 @@
 <div class="form">
 
-  <form action="/sign-up" method="POST">
+  <form action="/sign-up" method="POST" enctype="multipart/form-data">
     <h2>Crear cuenta</h2>
     <label>
       Usuario:
@@ -17,10 +17,8 @@
       <input type="password" name="password" placeholder="Tu contraseña" />
     </label>
 
-    <label>
-      Imagen de perfil:
-      <input type="image" name="profilePic" />
-    </label>
+    <label for="profilePic">Imagen de perfil:</label>
+    <input type="file" id="profilePic" name="profilePic" />
 
     <label>
       Sector:
@@ -29,10 +27,10 @@
 
     <button type="submit" class="promptPalButton">Crear cuenta</button>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
   </form>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
 </div>
 
 <p>¿Ya tienes cuenta? <a href="/log-in">Inicia sesión</a></p>

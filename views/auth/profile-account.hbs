@@ -1,56 +1,36 @@
 <div class="form">
 
-  <form action="/edit-profile" method="POST">
+  <form action="/edit-profile" method="POST" enctype="multipart/form-data">
     <h2>Editar cuenta</h2>
     <label>
       Usuario:
-      <input
-        type="text"
-        name="username"
-        placeholder="Your username"
-        value="{{username}}"
-      />
+      <input type="text" name="username" placeholder="Your username" value="{{username}}" />
     </label>
 
     <label>
       Email:
-      <input
-        type="email"
-        name="email"
-        placeholder="Your email"
-        value="{{email}}"
-      />
+      <input type="email" name="email" placeholder="Your email" value="{{email}}" />
     </label>
 
     <label>
       Contraseña:
-      <input
-        type="password"
-        name="password"
-        placeholder="Your password"
-        value="{{password}}"
-      />
+      <input type="password" name="password" placeholder="Your password" value="{{password}}" />
     </label>
 
-    <label>
-      Imagen de perfil:
-      <input type="image" name="profilePic" />
-    </label>
+    <label for="profilePic">Imagen de perfil:</label>
+    <img src="{{profilePic}}" alt="" />
+    <input type="text" name="profilePicOld" value="{{profilePic}}" style="display:none" />
+    <input type="file" id="profilePic" name="profilePic" />
 
     <label>
       Sector:
-      <input
-        type="text"
-        name="industry"
-        placeholder="Your industry"
-        value="{{industry}}"
-      />
+      <input type="text" name="industry" placeholder="Your industry" value="{{industry}}" />
     </label>
 
     <button type="submit" class="promptPalButton">Editar</button>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
   </form>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
 </div>

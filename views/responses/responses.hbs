@@ -9,9 +9,14 @@
 <form action="/responses" method="POST">
   <label for="tags">Tags:</label>
   <select name="tag" id="tags">
+    <option value="null">Todos</option>
     {{#each tags}}
       <option value="{{this}}">{{this}}</option>
     {{/each}}
+  </select>
+  <select name="sortByDate" id="sortByDate">
+    <option value="1">Ascendente</option>
+    <option value="-1">Descendente</option>
   </select>
   <button type="submit">Filtrar</button>
 </form>
@@ -21,7 +26,8 @@
     <h3>{{query}}</h3>
     <p class="fifty-chars">{{chatGPTresponse}}</p>
     <p>{{tag}}</p>
-    <p>{{updatedAt}}</p>
+    <p>Creación: {{createdAt}}</p>
+    <p>Ultima modificación: {{updatedAt}}</p>
     <a href="/responses/{{_id}}">Revisar</a>
     <a href="/responses/{{_id}}/delete">Eliminar</a>
   </div>

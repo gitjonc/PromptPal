@@ -4,15 +4,63 @@ body {
   background-color: #5ed9a720;
 }
 
-.bckgrimg {
-  background-image: url("/images/fondo_home.png");
-  background-position: center center;
-  background-size: cover;
-  height: 400px;
+/* // Diseño UX */
+
+.box {
   display: flex;
+  background-color: #ececed;
   flex-wrap: wrap;
+}
+
+.align {
   justify-content: center;
   align-items: center;
+}
+
+.PromptPal-index {
+  height: 60px;
+  display: block;
+}
+
+.indexButton1 {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: white;
+  color: #121224;
+}
+
+.indexButton2 {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #121224;
+  color: white;
+}
+
+.inflex {
+  display: flex;
+  justify-content: center;
+}
+
+.greenInflex{
+  background-color: #5ed9a7;
+  width: ;%
+}
+
+.inflex a{
+  margin: 20px 8px;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.singleDiv {
+  margin: 30px;
+}
+
+.main-footer {
+  background-color: #121224;
 }
 
 a {
@@ -44,6 +92,12 @@ header > div {
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+.promptPal-logo {
+  margin-left: 20px;
+  width: 160px;
+  height: auto;
 }
 
 header > label,

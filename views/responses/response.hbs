@@ -10,5 +10,6 @@
   <p class="definition">{{response.chatGPTresponse}}</p>
   <p class="response">{{response.prompts}}</p>
   <a href="/prompts/{{response.prompt}}">Ir a prompt</a>
-  <a href="">Enviar por email</a>
+  <a href="/responses/{{response._id}}/delete">Eliminar</a>
+  <a href="/responses/{{response._id}}/send">Enviar por email</a>
 </div>

@@ -33,8 +33,6 @@ body {
   padding: 40px 0 0 0;
 }
 
-
-
 .PromptPal-index {
   height: 60px;
   display: block;
@@ -126,6 +124,13 @@ header > div {
   height: auto;
 }
 
+.navBar-logo {
+  margin-left: 70px;
+  width: 160px;
+  height: auto;
+}
+
+
 header > label,
 input {
   background-color: rgba(0, 0, 0, 0.05);
@@ -152,9 +157,27 @@ section {
 }
 
 .navbar {
-  padding: 0;
-  height: 100px;
-  background-color: #5ed9a730;
+  padding: 10px 0 10px 0;
+  background-color: #121224;
+}
+
+.navA {
+  color: #ececed;
+  margin: 0 10px;
+}
+
+.navAButton {
+  background-color: #5ed9a7;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border-color: #121224;
+}
+
+.navPic {
+  width: 30px;
+  height: auto;
+  padding: 0 10px;
+  border-radius: 100%;
 }
 
 nav ul {

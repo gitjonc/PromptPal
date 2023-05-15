@@ -1,9 +1,8 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 
 const Prompt = require("./../models/Prompt.model");
 const Response = require("./../models/Response.model");
-const question = require("../api/openai");
+const question = require("../config/openai.config");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 

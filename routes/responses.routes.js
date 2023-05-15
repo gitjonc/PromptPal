@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 
 const Response = require("./../models/Response.model");
 const mailer = require("../config/nodemailer.config");
@@ -67,7 +66,6 @@ router.get("/:responseId/send", isLoggedIn, async (req, res, next) => {
   const id = req.params.responseId;
   const response = await Response.findById(id);
   const email = req.session.currentUser.email;
-  console.log(email);
   await mailer.sendMail({
     from: `PromptPal ${process.env.EMAIL}`,
     to: email,

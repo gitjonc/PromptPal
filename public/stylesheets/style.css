@@ -1,6 +1,6 @@
 body {
   font: 14px 'gothic', "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #5ed9a720;
+  background-color: #5ed9a780;
 }
 
 /* // Diseño UX */
@@ -148,6 +148,71 @@ input {
   margin-left: 0;
 }
 
+#login {
+  width: 60vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  
+}
+
+#login img {
+  width: 140px;
+  height: auto;
+  margin: 40px 0 0 16px;
+}
+
+#left {
+  background-color: #121224;
+  height: 60vh;
+  width: 20vw;
+  border-top-left-radius: 4%;
+  border-bottom-left-radius: 4%;
+  color: #ececed;
+
+}
+
+#left button {
+  align-items: flex-start;
+  position: relative;
+  bottom: 0;
+  left: 0
+}
+
+.leftAlign {
+  text-align: left;
+}
+
+#right {
+  background-color: #ececed;
+  height: 60vh;
+  width: 36vw;
+  border-top-right-radius: 4%;
+  border-bottom-right-radius: 4%;
+}
+
+.blueButton{
+  background-color: #121224;
+  color: #ececed;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border-radius: 12%;
+  border-color: #121224;
+}
+
+.whiteButton{
+  background-color: #ececed;
+  color: #121224;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border-radius: 12%;
+  border-color: #ececed;
+}
+
 section {
   display: flex;
   padding: 16px 8px;
@@ -293,15 +358,59 @@ h3 {
 }
 
 .prompts {
-  border: 2px solid #5ed9a7;
   margin-bottom: 2px;
   padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#prompt {
+  width: 40%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8%;
+  margin: 10px;
+  max-height: 200px;
+}
+
+#prompt p {
+  display: block;
+}
+
+#prompt .tags {
+  float: left;
+  background-color: #5ed9a7;
+  border-radius: 20%;
+  padding: 2px;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.promptsDimensions {
+  height: 400px;
 }
 
 .mainPrompt {
   border: 6px solid #5ed9a7;
   margin-bottom: 6px;
   padding: 8px;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  width: 800px;
+}
+
+.promptsTitle{
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
 }
 
 .flex {
@@ -358,6 +467,12 @@ h3 {
   /* width: 50ch; */
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.twoHundred-chars {
+  /* width: 50ch; */
+  white-space: wrap;
   text-overflow: ellipsis;
 }
 

@@ -197,7 +197,7 @@ router.post("/:prompt/edit", isLoggedIn, (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.post("/:prompt/delete", isLoggedIn, (req, res, next) => {
+router.get("/:prompt/delete", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
 
   Prompt.findByIdAndDelete(prompt)

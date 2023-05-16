@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const User = require("./../models/User.model");
 const uploader = require("./../config/cloudinary.config");
-const sendMail = require("./../utils/welcome-email");
+// const sendMail = require("./../utils/welcome-email");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
@@ -51,10 +51,10 @@ router.post("/sign-up", uploader.single("profilePic"), isLoggedOut, async (req, 
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
     await User.create({ username, email, password: hashedPassword, industry, profilePic: req.file.path });
-    await sendMail({
-      from: email,
-      username: username,
-    });
+    // await sendMail({
+    //   from: email,
+    //   username: username,
+    // });
 
     res.redirect("/profile");
   } catch (error) {
@@ -79,14 +79,13 @@ router.get("/log-in", isLoggedOut, (req, res) => {
 router.post("/log-in", isLoggedOut, async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    console.log(email, password);
     if (!email || !password) {
       res.render("auth/login", {
         errorMessage: "Se necesitan ambos campos para el log-in.",
       });
       return;
     }
-
     const user = await User.findOne({ email });
     if (!user || !bcrypt.compareSync(password, user.password)) {
       res.render("auth/login", {
@@ -94,7 +93,6 @@ router.post("/log-in", isLoggedOut, async (req, res, next) => {
       });
       return;
     } else if (bcrypt.compareSync(password, user.password)) {
-      //res.render("auth/profile", { user });
       req.session.currentUser = user;
       res.redirect("/profile");
     }
@@ -116,7 +114,7 @@ router.get("/edit-profile", isLoggedIn, (req, res, next) => {
 
 router.post("/edit-profile", uploader.single("profilePic"), isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
-  const { username, email, password, industry } = req.body;
+  const { username, email, industry } = req.body;
   let pic = req.body.profilePicOld;
   if (req.file != undefined) {
     pic = req.file.path;
@@ -140,7 +138,6 @@ router.get("/log-out", isLoggedIn, (req, res) => {
       res.status(500).render("auth/logout", { errorMessage: err.message });
       return;
     }
-
     res.redirect("/");
   });
 });

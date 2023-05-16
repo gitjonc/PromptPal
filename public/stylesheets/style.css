@@ -113,9 +113,7 @@ header > div {
 
 .form {
   display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 .promptPal-logo {
@@ -149,14 +147,15 @@ input {
 }
 
 #login {
-  width: 60vw;
-  height: 60vh;
+  width: 100vw;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   text-align: center;
+  margin-top: 60px;
   
 }
 

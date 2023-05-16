@@ -1,4 +1,4 @@
-// const mailer = require("../config/nodemailer.config");
+const mailer = require("../config/nodemailer.config");
 
 module.exports = ({ to, username }) =>
   mailer.sendMail({

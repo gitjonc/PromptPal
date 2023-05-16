@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const User = require("./../models/User.model");
 const uploader = require("./../config/cloudinary.config");
-// const sendMail = require("./../utils/welcome-email");
+const sendMail = require("./../utils/welcome-email");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
@@ -51,10 +51,10 @@ router.post("/sign-up", uploader.single("profilePic"), isLoggedOut, async (req, 
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
     await User.create({ username, email, password: hashedPassword, industry, profilePic: req.file.path });
-    // await sendMail({
-    //   from: email,
-    //   username: username,
-    // });
+    await sendMail({
+      from: email,
+      username: username,
+    });
 
     res.redirect("/profile");
   } catch (error) {

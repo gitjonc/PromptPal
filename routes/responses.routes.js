@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const Response = require("./../models/Response.model");
-// const mailer = require("../config/nodemailer.config");
+const mailer = require("../config/nodemailer.config");
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /responses
@@ -66,12 +66,12 @@ router.get("/:responseId/send", isLoggedIn, async (req, res, next) => {
   const id = req.params.responseId;
   const response = await Response.findById(id);
   const email = req.session.currentUser.email;
-  // await mailer.sendMail({
-  //   from: `PromptPal ${process.env.EMAIL}`,
-  //   to: email,
-  //   subject: "Aquí está tu consulta",
-  //   html: `${response.chatGPTresponse}`,
-  // });
+  await mailer.sendMail({
+    from: `PromptPal ${process.env.EMAIL}`,
+    to: email,
+    subject: "Aquí está tu consulta",
+    html: `${response.chatGPTresponse}`,
+  });
   res.redirect("/responses");
 });
 

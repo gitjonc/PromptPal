@@ -166,9 +166,10 @@ section {
   margin: 0 10px;
 }
 
-.navAButton {
+.PromptPalButtonNav {
   background-color: #5ed9a7;
   padding: 4px 10px;
+  margin: 0 10px 0 0;  
   border-radius: 6px;
   border-color: #121224;
 }
@@ -176,7 +177,7 @@ section {
 .navPic {
   width: 30px;
   height: auto;
-  padding: 0 10px;
+  padding: 0 10px 0 0;
   border-radius: 100%;
 }
 
@@ -189,7 +190,48 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: #ececed;
+}
+
+#contenedor {
+  position: relative;
+  width: 120px;
+  float: left;
+  background-color: #121224;
+  text-align: center;
+}
+
+#contenedor:hover #user{
+  display: block;
+}
+
+#user {
+  display: none;
+  background-color: #121224;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+li a {
+  text-decoration: none;
+  color: #ececed;
+}
+
+li a:hover {
+  text-decoration: none;
+  color: #121224;
+}
+
+.userProfile {
+  padding: 6px;
+  cursor: pointer;
+  color: #121224;
+}
+
+.userProfile:hover{
+  background-color: #5ed9a7;
+  color: #121224;
 }
 
 .button {

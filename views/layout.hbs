@@ -28,12 +28,21 @@
             <li><a href="/prompts/mis-prompts" class="navA">
                 Mis Prompts
               </a></li>
-            <li><a href="/prompts/create" class="navAButton">
-                Crear un Prompt +
-              </a></li>
-            <li><img src="/images/tedascuen.png" class="navPic" /></li>
-            <li><a href="/log-out"> Cerrar sesión </a></li>
+            <li><button href="/prompts/create" class="PromptPalButtonNav">Crear un Prompt +</button></li>
+
+            {{#if userInSession}}
+            <li><div id="contenedor"><img
+                  src="/images/tedascuen.png"
+                  class="navPic"
+                /><div id="user">
+                 <div class="userProfile"><a href="/prompts/mis-prompts">Mis Prompts</a></div>
+                 <div class="userProfile"><a href="/responses/mis-responses">Mis respuestas</a></div> 
+                 <div class="userProfile"><a href="/profile">Mi perfil</a></div>
+                 <div class="userProfile"><a href="/edit-profile">Editar Usuario</a></div>
+                 <div class="userProfile"><a href="/log-out">Cerrar sesión</a></div>
+                </div></li>
           </ul>
+          {{/if}}
 
         </nav>
       </div>

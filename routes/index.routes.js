@@ -52,7 +52,7 @@ router.post("/sign-up", uploader.single("profilePic"), isLoggedOut, async (req, 
     const hashedPassword = bcrypt.hashSync(password, salt);
     await User.create({ username, email, password: hashedPassword, industry, profilePic: req.file.path });
     await sendMail({
-      from: email,
+      to: email,
       username: username,
     });
 

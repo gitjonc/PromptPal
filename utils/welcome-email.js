@@ -3,7 +3,7 @@ const mailer = require("../config/nodemailer.config");
 module.exports = ({ to, username }) =>
   mailer.sendMail({
     from: `PromptPal ${process.env.EMAIL}`,
-    to,
+    to: to,
     subject: "Bienvenido a PromptPal 🚀",
     html: `<!DOCTYPE html>
 

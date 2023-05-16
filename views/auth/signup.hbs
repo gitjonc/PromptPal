@@ -1,29 +1,21 @@
 <div class="form">
-
+  <h2>Crear cuenta</h2>
   <form action="/sign-up" method="POST" enctype="multipart/form-data">
-    <h2>Crear cuenta</h2>
-    <label>
-      Usuario:
-      <input required type="text" name="username" placeholder="Tu usuario" />
-    </label>
 
-    <label>
-      Email:
-      <input required type="email" name="email" placeholder="Tu email" />
-    </label>
+    <label for="username">Usuario:</label>
+    <input required type="text" name="username" placeholder="Tu usuario" />
 
-    <label>
-      Contraseña:
-      <input required type="password" name="password" placeholder="Tu contraseña" />
-    </label>
+    <label for="email">Email:</label>
+    <input required type="email" name="email" placeholder="Tu email" />
+
+    <label for="password">Contraseña:</label>
+    <input required type="password" name="password" placeholder="Tu contraseña" />
 
     <label for="profilePic">Imagen de perfil:</label>
     <input required type="file" id="profilePic" name="profilePic" />
 
-    <label>
-      Sector:
-      <input type="text" name="industry" placeholder="Tu sector (opcional)" />
-    </label>
+    <label for="industry">Sector:</label>
+    <input type="text" name="industry" placeholder="Tu sector (opcional)" />
 
     <button type="submit" class="promptPalButton">Crear cuenta</button>
 

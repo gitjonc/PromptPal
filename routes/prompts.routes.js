@@ -1,8 +1,6 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 
 const Prompt = require("./../models/Prompt.model");
-const User = require("./../models/User.model");
 const Response = require("./../models/Response.model");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");

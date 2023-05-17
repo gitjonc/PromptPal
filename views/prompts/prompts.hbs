@@ -36,11 +36,17 @@
 
     <div id="pop-up" class="overlay">
       <div class="popup">
-        <h2>{{tag}}</h2>
+        <h3 class="tags">{{this.tag}}</h3>
         <a class="close" href="#">&times;</a>
         <div class="content">
-          {{description}}
-          <button>Hi there</button><button>Hi there</button>
+          {{this.definition}}
+          <div>
+
+            <button class="blueButtonPrompt"><a
+                href="/prompts/{{_id}}/edit"
+              >Utilizar</a></button>
+          </div>
+
         </div>
       </div>
     </div>

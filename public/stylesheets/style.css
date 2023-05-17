@@ -1,6 +1,6 @@
 body {
   font: 14px 'gothic', "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #5ed9a780;
+  background-color: #ececed;
 }
 
 /* // Diseño UX */
@@ -573,7 +573,7 @@ li a:hover {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 60%;
   position: relative;
   transition: all 5s ease-in-out;
 }

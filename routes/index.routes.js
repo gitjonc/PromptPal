@@ -8,6 +8,9 @@ const sendMail = require("./../utils/welcome-email");
 
 const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
+//REGEX
+const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
 // How many rounds should bcrypt run the salt (default - 10 rounds)
 const saltRounds = 10;
 
@@ -25,7 +28,6 @@ router.get("/sign-up", isLoggedOut, (req, res) => {
 router.post("/sign-up", uploader.single("profilePic"), isLoggedOut, async (req, res, next) => {
   try {
     const { username, email, password, industry } = req.body;
-    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
       res.status(500).render("auth/signup", {
         errorMessage:
@@ -112,7 +114,6 @@ router.get("/profile", isLoggedIn, (req, res) => {
 
 router.get("/edit-profile", isLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
-  console.log(user);
   User.findById(user._id).then((userOne) => {
     res.render("auth/profile-account", userOne);
   });
@@ -140,6 +141,33 @@ router.get("/edit-profile/change-password", isLoggedIn, (req, res) => {
 
 router.post("/edit-profile/change-password", isLoggedIn, async (req, res, next) => {
   try {
+    const user = req.session.currentUser;
+    const { currentpass, newpass, repeatpass } = req.body;
+    if (!bcrypt.compareSync(currentpass, user.password)) {
+      res.render("auth/change-password", {
+        errorMessage: "La contraseña no es correcta",
+      });
+      return;
+    }
+    if (newpass != repeatpass) {
+      res.render("auth/change-password", {
+        errorMessage: "La nueva contraseña no coincide",
+      });
+      return;
+    }
+    if (!regex.test(newpass)) {
+      res.render("auth/change-password", {
+        errorMessage:
+          "El password debe tener al menos 6 caracteres y debe contener un número, una minúscula y una mayúscula.",
+      });
+      return;
+    }
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hashedPassword = bcrypt.hashSync(newpass, salt);
+    await User.findByIdAndUpdate(user._id, {
+      password: hashedPassword,
+    });
+    res.redirect("/edit-profile");
   } catch (error) {
     next(error);
   }

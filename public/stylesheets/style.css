@@ -229,6 +229,21 @@ input {
   border-color: #121224;
 }
 
+.blueButtonPrompt {
+  background-color: #121224;
+  text-decoration: none;
+  width: 100px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 12%;
+  border-color: #121224;
+}
+
+.blueButtonPrompt a {
+  color: #ececed;
+  font-weight: 600;
+}
+
 .whiteButton{
   background-color: #ececed;
   color: #121224;
@@ -374,14 +389,6 @@ li a:hover {
   border-bottom: 1px solid #5ed9a7;
 }
 
-.profile h1,
-p,
-h3 {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .prompts {
   margin-bottom: 2px;
   padding: 5px;
@@ -394,6 +401,8 @@ h3 {
   width: 40%;
   padding: 10px;
   background-color: white;
+  display: flex;
+  flex-wrap: wrap;
   border-radius: 8%;
   margin: 10px;
   max-height: 200px;
@@ -406,10 +415,10 @@ h3 {
 #prompt .tags {
   float: left;
   background-color: #5ed9a7;
-  border-radius: 20%;
-  padding: 2px;
+  border-radius: 40%;
+  padding: 6px;
   flex-wrap: wrap;
-  margin-bottom: 80px;
+  margin: 0;
 }
 
 .promptsDimensions {
@@ -440,7 +449,7 @@ h3 {
 
 .flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: center;
   padding: 10px;
 }
@@ -495,8 +504,8 @@ h3 {
   text-overflow: ellipsis;
 }
 
-.twoHundred-chars {
-  /* width: 50ch; */
+.hundred-chars {
+  width: 100ch;
   white-space: wrap;
   text-overflow: ellipsis;
 }

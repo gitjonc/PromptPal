@@ -19,14 +19,16 @@
 
     <div id="prompt">
       <h3 class="tags">{{tag}}</h3>
-      <div class="promptsDimensions">
-        <p class="twoHundred-chars">{{definition}}</p>
-        <div>
-          <button class="bin"><a href="/prompts/{{_id}}"><img
-                src="/images/searchIcon.png"
-              /></a></button></div>
-      </div>
 
+      <p class="hundred-chars">{{definition}}</p>
+
+      <div class="flex">
+        <div></div>
+        <button class="blueButtonPrompt"><a
+            href="/prompts/{{_id}}/edit"
+          >Utilizar</a></button>
+
+      </div>
     </div>
   {{/each}}
 </div>

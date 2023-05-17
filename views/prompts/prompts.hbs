@@ -23,11 +23,25 @@
       <p class="hundred-chars">{{definition}}</p>
 
       <div class="flex">
-        <div></div>
+
+        <button class="greenButtonPrompt button"><a
+            href="#pop-up"
+          >Ver</a></button>
         <button class="blueButtonPrompt"><a
             href="/prompts/{{_id}}/edit"
           >Utilizar</a></button>
 
+      </div>
+    </div>
+
+    <div id="pop-up" class="overlay">
+      <div class="popup">
+        <h2>{{tag}}</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          {{description}}
+          <button>Hi there</button><button>Hi there</button>
+        </div>
       </div>
     </div>
   {{/each}}

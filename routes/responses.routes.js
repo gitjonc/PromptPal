@@ -8,7 +8,7 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const tags = await Response.distinct("tag");
-    const responses = await Response.find().sort({ updatedAt: -1 });
+    const responses = await Response.find({ user: req.session.currentUser._id }).sort({ updatedAt: -1 });
     const responsesUpdated = responses.map((el) => {
       const element = el.toObject();
       element.createdAt = element.updatedAt.toLocaleDateString("es-ES");

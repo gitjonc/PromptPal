@@ -22,65 +22,59 @@ router.get("/sign-up", isLoggedOut, (req, res) => {
 });
 
 // POST /sign-up
-router.post(
-  "/sign-up",
-  uploader.single("profilePic"),
-  isLoggedOut,
-  async (req, res, next) => {
-    try {
-      const { username, email, password, industry } = req.body;
-      const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-      if (!regex.test(password)) {
-        res.status(500).render("auth/signup", {
-          errorMessage:
-            "El password debe tener al menos 6 caracteres y debe contener un número, una minúscula y una mayúscula.",
-        });
-        return;
-      }
-
-      if (!username || !email || !password) {
-        res.render("auth/signup", {
-          errorMessage: "Es necesario rellenar todos los campos.",
-        });
-        return;
-      }
-
-      const user = await User.findOne({ $or: [{ username }, { email }] });
-      if (user) {
-        res.render("auth/signup", {
-          errorMessage: "El usuario y/o email ya están en uso",
-        });
-        return;
-      }
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hashedPassword = bcrypt.hashSync(password, salt);
-      await User.create({
-        username,
-        email,
-        password: hashedPassword,
-        industry,
-        profilePic: req.file.path,
+router.post("/sign-up", uploader.single("profilePic"), isLoggedOut, async (req, res, next) => {
+  try {
+    const { username, email, password, industry } = req.body;
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if (!regex.test(password)) {
+      res.status(500).render("auth/signup", {
+        errorMessage:
+          "El password debe tener al menos 6 caracteres y debe contener un número, una minúscula y una mayúscula.",
       });
-      await sendMail({
-        to: email,
-        username: username,
-      });
+      return;
+    }
 
-      res.redirect("/profile");
-    } catch (error) {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup", { errorMessage: error.message });
-      } else if (error.code === 11000) {
-        res.status(500).render("auth/signup", {
-          errorMessage:
-            "El usuario y el email deben ser únicos, y alguno está en uso.",
-        });
-      } else {
-        next(error);
-      }
+    if (!username || !email || !password) {
+      res.render("auth/signup", {
+        errorMessage: "Es necesario rellenar todos los campos.",
+      });
+      return;
+    }
+
+    const user = await User.findOne({ $or: [{ username }, { email }] });
+    if (user) {
+      res.render("auth/signup", {
+        errorMessage: "El usuario y/o email ya están en uso",
+      });
+      return;
+    }
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    await User.create({
+      username,
+      email,
+      password: hashedPassword,
+      industry,
+      profilePic: req.file.path,
+    });
+    await sendMail({
+      to: email,
+      username: username,
+    });
+
+    res.redirect("/profile");
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.status(500).render("auth/signup", { errorMessage: error.message });
+    } else if (error.code === 11000) {
+      res.status(500).render("auth/signup", {
+        errorMessage: "El usuario y el email deben ser únicos, y alguno está en uso.",
+      });
+    } else {
+      next(error);
     }
   }
-);
+});
 
 // GET /log-in
 router.get("/log-in", isLoggedOut, (req, res) => {
@@ -124,38 +118,32 @@ router.get("/edit-profile", isLoggedIn, (req, res, next) => {
   });
 });
 
-router.post(
-  "/edit-profile",
-  uploader.single("profilePic"),
-  isLoggedIn,
-  async (req, res, next) => {
-    //const user = req.session.currentUser;
-    console.log("funca");
-    const { username, email, industry, password } = req.body;
-    const user = await User.findOne({ email });
-    console.log(user);
-    console.log(password);
-    let pic = req.body.profilePicOld;
-    if (req.file != undefined) {
-      pic = req.file.path;
-    }
-
-    if (!bcrypt.compareSync(password, user.password)) {
-      console.log("Funca 2");
-      const salt = bcrypt.genSaltSync(saltRounds);
-      password = bcrypt.hashSync(password, salt);
-    }
-    console.log(password);
-    await User.findByIdAndUpdate(user._id, {
-      username,
-      email,
-      //password: password,
-      industry,
-      profilePic: pic,
-    });
-    res.redirect("/edit-profile");
+router.post("/edit-profile", uploader.single("profilePic"), isLoggedIn, async (req, res, next) => {
+  const user = req.session.currentUser;
+  const { username, email, industry } = req.body;
+  let pic = req.body.profilePicOld;
+  if (req.file != undefined) {
+    pic = req.file.path;
   }
-);
+  await User.findByIdAndUpdate(user._id, {
+    username,
+    email,
+    industry,
+    profilePic: pic,
+  });
+  res.redirect("/edit-profile");
+});
+
+router.get("/edit-profile/change-password", isLoggedIn, (req, res) => {
+  res.render("auth/change-password");
+});
+
+router.post("/edit-profile/change-password", isLoggedIn, async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+});
 
 // GET /log-out
 router.get("/log-out", isLoggedIn, (req, res) => {

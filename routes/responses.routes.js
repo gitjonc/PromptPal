@@ -8,7 +8,9 @@ const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const tags = await Response.distinct("tag");
-    const responses = await Response.find({ user: req.session.currentUser._id }).sort({ updatedAt: -1 });
+    const responses = await Response.find({
+      user: req.session.currentUser._id,
+    }).sort({ updatedAt: -1 });
     const responsesUpdated = responses.map((el) => {
       const element = el.toObject();
       element.createdAt = element.updatedAt.toLocaleDateString("es-ES");
@@ -23,14 +25,21 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 
 router.post("/", isLoggedIn, async (req, res, next) => {
   try {
-    const tags = await Response.distinct("tag");
+    const tags = await Response.find({
+      user: req.session.currentUser._id,
+    }).distinct("tag");
     const tag = req.body.tag;
     const orderBy = req.body.sortByDate;
     let responses = {};
     if (tag == "null") {
-      responses = await Response.find().sort({ updatedAt: orderBy });
+      responses = await Response.find({
+        user: req.session.currentUser._id,
+      }).sort({ updatedAt: orderBy });
     } else {
-      responses = await Response.find({ tag: tag }).sort({ updatedAt: orderBy });
+      responses = await Response.find({
+        user: req.session.currentUser._id,
+        tag: tag,
+      }).sort({ updatedAt: orderBy });
     }
     const responsesUpdated = responses.map((el) => {
       const element = el.toObject();

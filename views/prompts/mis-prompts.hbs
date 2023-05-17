@@ -2,12 +2,18 @@
 
 {{#if prompts}}
 
-  <form action="/prompts" method="POST">
+  <form action="/prompts/mis-prompts" method="POST">
     <label for="tags">Tags:</label>
     <select name="tag" id="tags">
+      <option value="null">Todos</option>
       {{#each tags}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
+    </select>
+    <button type="submit">Filtrar</button>
+    <select name="sortByDate" id="sortByDate">
+      <option value="1">Ascendente</option>
+      <option value="-1">Descendente</option>
     </select>
     <button type="submit">Filtrar</button>
   </form>
@@ -18,26 +24,38 @@
         prompts</button></a></div>
 
   {{#each prompts}}
-    <div class="prompts">
-      <h3>{{tag}}</h3>
-      <p>{{definition}}</p>
-      <p><b>Creado</b>: {{createdAt}}</p>
-      <p><b>Actualizado</b>: {{updatedAt}}</p>
-      <a href="/ask/{{_id}}" class="promptPalButtonPrompts">Consultar</a>
-      {{#if prompt}}
-        <a
-          href="/prompts/{{prompt}}/prompts"
-          class="promptPalButtonPrompts"
-        >Consultas</a>
-      {{/if}}
-      <a href="/prompts/{{_id}}/edit" class="promptPalButtonPrompts">Editar</a>
-      <p>
-        <a href="/prompts/{{_id}}/delete" class="bin">
-        <img
-              src="/images/delete.png"
-            /></a>
+    <div id="prompt">
+      <h3 class="tags">{{tag}}</h3>
 
-        </form></p>
+      <p class="hundred-chars">{{definition}}</p>
+
+      <div class="flex">
+
+        <button class="greenButtonPrompt button"><a
+            href="#pop-up"
+          >Ver</a></button>
+        <button class="blueButtonPrompt"><a
+            href="/prompts/{{_id}}/edit"
+          >Utilizar</a></button>
+
+      </div>
+    </div>
+
+    <div id="pop-up" class="overlay">
+      <div class="popup">
+        <h3 class="tags">{{this.tag}}</h3>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          {{this.definition}}
+          <div>
+
+            <button class="blueButtonPrompt"><a
+                href="/prompts/{{_id}}/edit"
+              >Utilizar</a></button>
+          </div>
+
+        </div>
+      </div>
     </div>
 
   {{/each}}

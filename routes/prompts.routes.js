@@ -121,8 +121,8 @@ router.get("/story-telling", isLoggedIn, (req, res, next) => {
 router.get("/mis-prompts", isLoggedIn, async (req, res, next) => {
   try {
     const user = req.session.currentUser._id;
-    const tags = await Prompt.distinct("tag");
-    const promptos = await Prompt.find({ user: user });
+    const tags = await Prompt.find({ user }).distinct("tag");
+    const promptos = await Prompt.find({ user });
     const promptsUpdated = promptos.map((el) => {
       const element = el.toObject();
       element.createdAt = element.createdAt.toLocaleDateString("es-ES");
@@ -133,8 +133,36 @@ router.get("/mis-prompts", isLoggedIn, async (req, res, next) => {
     res.render("prompts/mis-prompts", {
       tags,
       prompts: promptsUpdated,
-      promptos,
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/mis-prompts", isLoggedIn, async (req, res, next) => {
+  try {
+    const user = req.session.currentUser._id;
+    const tags = await Prompt.find({ user }).distinct("tag");
+    const tag = req.body.tag;
+    const orderBy = req.body.sortByDate;
+    let prompts = {};
+    if (tag == "null") {
+      prompts = await Prompt.find({
+        user: req.session.currentUser._id,
+      }).sort({ updatedAt: orderBy });
+    } else {
+      prompts = await Prompt.find({
+        user: req.session.currentUser._id,
+        tag: tag,
+      }).sort({ updatedAt: orderBy });
+    }
+    const promptsUpdated = prompts.map((el) => {
+      const element = el.toObject();
+      element.createdAt = element.updatedAt.toLocaleDateString("es-ES");
+      element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
+      return element;
+    });
+    res.render("prompts/mis-prompts", { tags, prompts: promptsUpdated });
   } catch (error) {
     next(error);
   }

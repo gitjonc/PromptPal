@@ -2,12 +2,14 @@ const router = require("express").Router();
 
 const Response = require("./../models/Response.model");
 const mailer = require("../config/nodemailer.config");
-const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
+const { isLoggedIn } = require("../middleware/route-guard.js");
 
 //GET /responses
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
-    const tags = await Response.distinct("tag");
+    const tags = await Response.find({
+      user: req.session.currentUser._id,
+    }).distinct("tag");
     const responses = await Response.find({
       user: req.session.currentUser._id,
     }).sort({ updatedAt: -1 });

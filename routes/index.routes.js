@@ -149,6 +149,12 @@ router.post("/edit-profile/change-password", isLoggedIn, async (req, res, next) 
       });
       return;
     }
+    if (currentpass == newpass) {
+      res.render("auth/change-password", {
+        errorMessage: "La contraseña nueva debe ser diferente a la actual",
+      });
+      return;
+    }
     if (newpass != repeatpass) {
       res.render("auth/change-password", {
         errorMessage: "La nueva contraseña no coincide",

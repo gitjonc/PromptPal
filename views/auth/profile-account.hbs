@@ -8,9 +8,6 @@
     <label for="email">Email:</label>
     <input type="email" name="email" placeholder="Your email" value="{{email}}" />
 
-    <label for="password">Contraseña:</label>
-    <input type="password" name="password" placeholder="Your password" value="{{password}}" />
-
     <label for="profilePic">Imagen de perfil:</label>
     <img src="{{profilePic}}" alt="" />
     <input type="text" name="profilePicOld" value="{{profilePic}}" style="display:none" />
@@ -25,4 +22,7 @@
   {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
+
+  <h3>Si quieres cambiar el password, <a href="/edit-profile/change-password">haz click aquí.</a></h3>
+
 </div>

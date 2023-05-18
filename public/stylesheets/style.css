@@ -30,12 +30,13 @@ body {
   justify-content: center;
 }
 
-.box {
+.newBox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 0 0 0;
+  flex-direction: row;
+  width: 70vw;
+  height: auto;
+  background-color: #ececed;
 }
 
 .PromptPal-index {
@@ -70,6 +71,23 @@ body {
 
 #first {
   background-color: #5ed9a7;
+}
+
+.newPromptText {
+  width: 60vw;
+  background-color: #5ed9a7;
+  border-radius: 10%;
+  border: 0;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.newPromptTag {
+  width: 100%;
+  background-color: rgb(177, 167, 167);
+  border-radius: 10%;
+  border: 0;
+  padding: 20px;
 }
 
 .inflex a{
@@ -273,6 +291,10 @@ input {
   border-color: #ececed;
 }
 
+.whiteBottom {
+  background-color: #ececed;
+}
+
 section {
   display: flex;
   padding: 16px 8px;
@@ -474,6 +496,31 @@ li a:hover {
   padding: 10px;
 }
 
+.flexFigma {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ececed;
+  margin: 0;
+  padding: 60px;
+}
+
+.flexLeft {
+  display: flex;
+  justify-content: stretch;
+}
+
+
+.divFigma{
+  min-height: 300px;
+
+}
+
+.wrap {
+flex: none;
+  flex-wrap: wrap;
+}
+
 .promptsEdit {
   border: 2px solid #5ed9a7;
   margin-bottom: 2px;
@@ -599,4 +646,20 @@ li a:hover {
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+
+/* FIGMA {} */
+
+.create {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 32px;
+
+position: absolute;
+width: 1040px;
+height: 471px;
+left: calc(50% - 1040px/2);
+top: 237px;
 }

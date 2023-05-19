@@ -1,22 +1,21 @@
 <div class="centerFlexTitle"><h2>Mis prompts</h2>
-<button class="createPromptButton"><a href="/prompts/create">Crear prompt</a></button>
+<a href="/prompts/create"><button class="createPromptButton">Crear prompt</button></a>
 
   {{#if prompts}}
 
     <form action="/prompts/mis-prompts" method="POST">
-      <label for="tags">Tags:</label>
-      <select name="tag" id="tags">
+      <select name="tag" id="tags" class="greyInput">
         <option value="null">Todos</option>
         {{#each tags}}
           <option value="{{this}}">{{this}}</option>
         {{/each}}
       </select>
-      <button type="submit">Filtrar</button>
-      <select name="sortByDate" id="sortByDate">
+      <button type="submit" class="blueButton">Filtrar</button>
+      <select name="sortByDate" id="sortByDate" class="greyInput">
         <option value="1">Ascendente</option>
         <option value="-1">Descendente</option>
       </select>
-      <button type="submit">Filtrar</button>
+      <button type="submit" class="blueButton">Filtrar</button>
     </form>
     </div>
 

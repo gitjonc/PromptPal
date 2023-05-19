@@ -1,15 +1,32 @@
-<a href="/profile"><button>Ir a mi perfil</button></a>
+<div class="centerFlex">
+  <div id="promptNew4">
 
-<a href="/log-out"><button>Log out</button></a>
+    <form action="{{id}}" method="POST">
 
-<a href="/responses"><button>Ver todas</button></a>
+      <textarea
+        class="newPromptText hundred-chars"
+        name="prompt"
+        cols="30"
+        rows="10"
+      >{{response.query}}</textarea>
 
-<h2>{{response.query}}</h2>
 
-<div class="prompts">
-  <p class="definition">{{response.chatGPTresponse}}</p>
-  <p class="response">{{response.prompts}}</p>
-  <a href="/prompts/{{response.prompt}}">Ir a prompt</a>
-  <a href="/responses/{{response._id}}/delete">Eliminar</a>
-  <a href="/responses/{{response._id}}/send">Enviar por email</a>
+    </form>
+
+    <textarea
+        class="newPromptText2 hundred-chars"
+        name="prompt"
+        cols="30"
+        rows="10"
+      >{{response.chatGPTresponse}}</textarea>
+
+      <div class="centerFlexTop2">          
+  <button class="blueButtonRes"><a href="/prompts/{{response.prompt}}">Ir a prompt</a></button>
+  <button class="blueButtonDelRes"><a href="/responses/{{response._id}}/delete">Eliminar</a></button>
+  <button class="blueButtonSendRes"><a href="/responses/{{response._id}}/send">Enviar por email</a></button></div>
+
+  </div>
+
+</div>
+
 </div>

@@ -1,35 +1,64 @@
-<h2>Available responses</h2>
+<div class="promptsTitle">
+  <h2 class="title">Tus respuestas</h2>
+</div>
+<div class="allPromptsSearch">
+  <form action="/responses" method="POST">
+    <select name="tag" id="tags">
+      <option value="null">Todos</option>
+      {{#each tags}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+    <select name="sortByDate" id="sortByDate">
+      <option value="1">Ascendente</option>
+      <option value="-1">Descendente</option>
+    </select>
+    <button type="submit">Filtrar</button>
+  </form>
+</div>
 
-<a href="/profile"><button>Ir a mi perfil</button></a>
+<div class="prompts">
 
-<a href="/log-out"><button>Log out</button></a>
+  {{#each responses}}
 
-<a href="/responses"><button>Ver todas</button></a>
+    <div id="prompt">
+      <h3 class="tags fifty-chars">{{query}}</h3>
 
-<form action="/responses" method="POST">
-  <label for="tags">Tags:</label>
-  <select name="tag" id="tags">
-    <option value="null">Todos</option>
-    {{#each tags}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <select name="sortByDate" id="sortByDate">
-    <option value="1">Ascendente</option>
-    <option value="-1">Descendente</option>
-  </select>
-  <button type="submit">Filtrar</button>
-</form>
+      <p class="fifty-chars">{{chatGPTresponse}}</p>
 
-{{#each responses}}
-  <div class="prompts">
-    <h3>{{query}}</h3>
-    <p class="fifty-chars">{{chatGPTresponse}}</p>
-    <p>{{tag}}</p>
-    <p>Creación: {{createdAt}}</p>
-    <p>Ultima modificación: {{updatedAt}}</p>
-    <a href="/responses/{{_id}}">Revisar</a>
-    <a href="/responses/{{_id}}/delete">Eliminar</a>
-    <a href="/responses/{{_id}}/send">Enviar por email</a>
-  </div>
-{{/each}}
+      <p>Creación: {{createdAt}}</p>
+      <p>Ultima modificación: {{updatedAt}}</p>
+
+      <div class="flex">
+
+        <button class="blueButtonRes"><a
+            href="/responses/{{_id}}"
+          >Revisar</a></button>
+        <button class="blueButtonDelRes"><a
+            href="/responses/{{_id}}/delete"
+          >Eliminar</a></button>
+        <button class="blueButtonSendRes"><a
+            href="/responses/{{_id}}/send"
+          >Enviar por email</a></button>
+
+      </div>
+    </div>
+
+    <div id="pop-up" class="overlay">
+      <div class="popup">
+        <h3 class="tags">{{this.tag}}</h3>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+          {{this.definition}}
+          <div>
+
+            <button class="blueButtonPrompt"><a
+                href="/prompts/{{_id}}/edit"
+              >Utilizar</a></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

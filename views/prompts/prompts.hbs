@@ -1,15 +1,16 @@
 <div class="promptsTitle">
   <h2 class="title">Encuentra tu prompt adecuado para obtener la mejor respuesta</h2>
 </div>
-<div class="search">
+<div class="allPromptsSearch">
   <form action="/prompts" method="POST">
-    <label for="tags">Tags:</label>
-    <select name="tag" id="tags">
-      {{#each tags}}
-        <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
-    <button type="submit">Filtrar</button>
+    <div>
+      <select name="tag" id="tags" class="allPromptsSearch">
+        {{#each tags}}
+          <option value="{{this}}" class="allPromptsSearch">{{this}}</option>
+        {{/each}}
+      </select>
+      <button type="submit" class="blueButton3">Filtrar</button>
+    </div>
   </form>
 </div>
 

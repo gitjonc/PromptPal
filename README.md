@@ -39,9 +39,9 @@ This saves you time with ChatGPT.
 ## Server Routes (back-end)
 
 | Route | Method  | Description  |
-|---|---|---|---|
+|---|---|---|
 | `/` | `GET` | Main page. Renders `index`   |
-| `/sign-up` | `GET` | Sign up form. Renders `auth/signup`  |   |
+| `/sign-up` | `GET` | Sign up form. Renders `auth/signup`  |
 | `/sign-up` | `POST` | Check data. If the data is not correct, it renders `auth/signup` again with an error message, else redirects `/profile`  |
 | `/log-in` | `GET` | Log-in form. Renders `auth/login` |
 | `/log-in` | `POST` | Check data. If the data is not correct, it renders `auth/login` again with an error message, else redirects `/profile` |

@@ -1,19 +1,75 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* //Hasta aquí el reset */
+
 body {
   font: 14px 'gothic', "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #ececed;
 }
 
-/* // Diseño UX */
-/* 
-@font-face {
-  font-family: 'gothic';
-  src: url('/public/stylesheets/fonts/GOTHIC.TTF') format('ttf'), url('/public/stylesheets/fonts/GOTHICB.TTF') format('ttf'), url('/public/stylesheets/fonts/GOTHICI.TTF') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-  } */
+.margin {
+  margin: 20px 0;
+}
 
 .grey-bckg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #ececed;
+  margin: 76px;
+}
+
+.el {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .el h3 {
@@ -23,6 +79,12 @@ body {
 
 .el h1 {
   font-size: 76px;
+}
+
+nav p {
+  color: #ececed;
+  text-align: center;
+  padding-bottom: 8px;
 }
 
 .centerFlex {
@@ -55,6 +117,13 @@ body {
   flex-wrap: wrap;
 }
 
+.centerFlexWrap2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px;
+}
+
 .centerFlexTitle {
   display: flex;
   justify-content: space-evenly;
@@ -78,23 +147,96 @@ body {
 }
 
 .PromptPal-index {
+  display: flex;
+  justify-content: center;
   height: 60px;
   display: block;
   padding:40px 0 ;
 }
 
+.grey-bckg img {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
 .indexButton1 {
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 16%;
   background-color: white;
   color: #121224;
+  border: 0;
+  cursor: pointer;
+}
+
+.indexButton1:hover {
+  padding: 12px;
+  border-radius: 16%;
+  background-color: #121224;
+  font-weight: 600;
+  color: #ececed;
+  border: 0;
+}
+
+.signUpButton1 {
+  padding: 12px;
+  border-radius: 16%;
+  background-color: white;
+  color: #121224;
+  border: 0;
+  cursor: pointer;
+  margin: 12px;
+}
+
+.signUpButton1:hover {
+  padding: 12px;
+  border-radius: 16%;
+  background-color: #5ed9a7;
+  color: #ececed;
+  border: 0;
+}
+
+.signUpButton1:hover a {
+  color: #121224;
+  font-weight: 600;
+}
+
+.signUpButton2 {
+  padding: 12px;
+  border-radius: 16%;
+  background-color: white;
+  color: #121224;
+  border: 0;
+  cursor: pointer;
+  margin: 12px;
+}
+
+.signUpButton2:hover {
+  padding: 12px;
+  border-radius: 16%;
+  background-color: #5ed9a7;
+  color: #ececed;
+  border: 0;
+  color: #121224;
+  font-weight: 600;
 }
 
 .indexButton2 {
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 16%;
   background-color: #121224;
-  color: white;
+  color: #ececed;
+  border: 0;
+  cursor: pointer;
+}
+
+.indexButton2:hover {
+  padding: 12px;
+  border-radius: 16%;
+  font-weight: 600;
+  background-color: white;
+  color: #121224;
+  border: 0;
 }
 
 .inflex {
@@ -231,9 +373,10 @@ input {
 
 .allPromptsSearch {
   margin-bottom: 2px;
-  margin: 20px;
+  margin: 0 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .allPromptsSearch form, select {
@@ -253,14 +396,13 @@ input {
 
 #login {
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
-  margin-top: 60px;
-  
+  align-items: center;
+  text-align: center;  
 }
 
 #login img {
@@ -298,7 +440,7 @@ input {
 }
 
 #right {
-  background-color: #ececed;
+  background-color: #F6F6F6;
   height: 60vh;
   width: 40vw;
   display: flex;
@@ -331,9 +473,9 @@ input {
 .blueButton3{
   background-color: #121224;
   color: #ececed;
-  margin-top: 20px;
   display: flex;
-  padding: 5px 10px;
+  align-items: center;
+  padding: 5px 5px;
   border-radius: 12%;
   border-color: #121224;
 }
@@ -450,6 +592,12 @@ section {
   align-items: center;
 }
 
+.slogan {
+  color:#ececed;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
 .navbar {
   padding: 10px 0 10px 0;
   background-color: #121224;
@@ -458,6 +606,19 @@ section {
 .navA {
   color: #ececed;
   margin: 0 10px;
+}
+
+nav button {
+  background-color: #5ed9a7;
+  color: #121224;
+  padding: 4px;
+  border: 0;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #5ed9a7;
+  color: #121224;
 }
 
 .PromptPalButtonNav {
@@ -527,6 +688,7 @@ li a:hover {
 .userProfile:hover{
   background-color: #5ed9a7;
   color: #121224;
+  font-weight: 600;
 }
 
 .button {
@@ -562,6 +724,11 @@ li a:hover {
   width: 100%;
   height: auto;
   display: flex;
+}
+
+.allPage {
+  width: 100vw;
+  height: 100vh;
 }
 
 
@@ -649,7 +816,8 @@ li a:hover {
 .title {
   text-align: center;
   font-size: 3rem;
-  width: 800px;
+  width: 700px;
+  margin: 20px 0;
 }
 
 .promptsTitle{
@@ -742,12 +910,19 @@ flex: none;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin: 20px 10px;
 }
 
 .hundred-chars {
   width: 100ch;
   white-space: wrap;
   text-overflow: ellipsis;
+  margin: 20px 10px;
+}
+
+.h2 {
+  font-size: 2rem;
+  margin: 20px;
 }
 
 
@@ -823,16 +998,49 @@ flex: none;
 
 /* FIGMA {} */
 
-.create {
-  display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 32px;
+#sign-up:hover {
+	background-color: #5ed9a7;
+	text-decoration: none;
+  font-weight: 600;
+}
 
-position: absolute;
-width: 1040px;
-height: 471px;
-left: calc(50% - 1040px/2);
-top: 237px;
+#sign-up button:hover {
+	background-color: #5ed9a7;
+	text-decoration: none;
+  font-weight: 600;
+}
+
+.file-select {
+  position: relative;
+  display: inline-block;
+}
+
+.file-select:hover {
+  background-color: #5ed9a7;
+  color: #121224;
+}
+
+.file-select::before {
+  background-color: #121224;
+  color: #ececed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12%;
+  content: 'Seleccionar archivo'; 
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.file-select input[type="file"] {
+  opacity: 0;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#src-file1::before {
+  content: 'Seleccionar Archivo 1';
 }

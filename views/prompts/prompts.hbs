@@ -2,8 +2,8 @@
   <h2 class="title">Encuentra tu prompt adecuado para obtener la mejor respuesta</h2>
 </div>
 <div class="allPromptsSearch">
-  <form action="/prompts" method="POST">
-    <div>
+  <form action="/prompts" method="POST" class="allPromptsSearch">
+    <div class="allPromptsSearch">
       <select name="tag" id="tags" class="allPromptsSearch">
         {{#each tags}}
           <option value="{{this}}" class="allPromptsSearch">{{this}}</option>
@@ -25,9 +25,9 @@
 
       <div class="flex">
 
-        <button class="greenButtonPrompt button"><a
+        {{! <button class="greenButtonPrompt button"><a
             href="#pop-up"
-          >Ver</a></button>
+          >Ver</a></button> }}
         <button class="blueButtonPrompt"><a
             href="/prompts/{{_id}}/edit"
           >Utilizar</a></button>

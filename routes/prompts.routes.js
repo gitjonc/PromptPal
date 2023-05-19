@@ -2,7 +2,6 @@ const router = require("express").Router();
 
 const Prompt = require("./../models/Prompt.model");
 const Response = require("./../models/Response.model");
-
 const { isLoggedIn } = require("../middleware/route-guard.js");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -16,7 +15,11 @@ router.get("/", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    res.render("prompts/prompts", { tags, prompts: promptsUpdated });
+    res.render("prompts/prompts", {
+      tags,
+      prompts: promptsUpdated,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -27,14 +30,20 @@ router.post("/", isLoggedIn, async (req, res, next) => {
     const tags = await Prompt.distinct("tag");
     const tag = req.body.tag;
     const prompts = await Prompt.find({ tag: tag });
-    res.render("prompts/prompts", { tags, prompts });
+    res.render("prompts/prompts", {
+      tags,
+      prompts,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     next(error);
   }
 });
 
 router.get("/create", isLoggedIn, (req, res, next) => {
-  res.render("prompts/new-prompt.hbs");
+  res.render("prompts/new-prompt.hbs", {
+    userInSession: req.session.currentUser,
+  });
 });
 
 router.post("/create", isLoggedIn, (req, res, next) => {
@@ -62,6 +71,7 @@ router.get("/mis-prompts", isLoggedIn, async (req, res, next) => {
     res.render("prompts/mis-prompts", {
       tags,
       prompts: promptsUpdated,
+      userInSession: req.session.currentUser,
     });
   } catch (error) {
     next(error);
@@ -91,7 +101,11 @@ router.post("/mis-prompts", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    res.render("prompts/mis-prompts", { tags, prompts: promptsUpdated });
+    res.render("prompts/mis-prompts", {
+      tags,
+      prompts: promptsUpdated,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -102,7 +116,11 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
   Prompt.findById(prompt)
     .then((prompt) => {
       Prompt.find({ prompt: prompt }).then((asPrompt) => {
-        res.render("prompts/prompt.hbs", { prompt, asPrompt });
+        res.render("prompts/prompt.hbs", {
+          prompt,
+          asPrompt,
+          userInSession: req.session.currentUser,
+        });
       });
     })
     .catch((err) => console.log(err));
@@ -111,7 +129,10 @@ router.get("/:prompt", isLoggedIn, (req, res) => {
 router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
   Prompt.findById(prompt).then((prompt) => {
-    res.render("prompts/related-prompts.hbs", { prompt });
+    res.render("prompts/related-prompts.hbs", {
+      prompt,
+      userInSession: req.session.currentUser,
+    });
   });
 });
 
@@ -122,6 +143,7 @@ router.get("/:prompt/prompts", isLoggedIn, (req, res, next) => {
       res.render("prompts/associated-prompts.hbs", {
         originalPrompt,
         asPrompt,
+        userInSession: req.session.currentUser,
       });
     });
   });
@@ -131,14 +153,22 @@ router.get("/:prompt/responses", isLoggedIn, async (req, res, next) => {
   const { prompt } = req.params;
   const mainPrompt = await Prompt.findById(prompt);
   const responses = await Response.find({ prompt: prompt });
-  res.render("prompts/responses", { responses, prompt, mainPrompt });
+  res.render("prompts/responses", {
+    responses,
+    prompt,
+    mainPrompt,
+    userInSession: req.session.currentUser,
+  });
 });
 
 router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
   Prompt.findById(prompt)
     .then((promptToEdit) => {
-      res.render("prompts/edit-prompt.hbs", { promptToEdit });
+      res.render("prompts/edit-prompt.hbs", {
+        promptToEdit,
+        userInSession: req.session.currentUser,
+      });
     })
     .catch((error) => next(error));
 });

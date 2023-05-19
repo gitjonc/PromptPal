@@ -13,7 +13,11 @@ router.get("/:promptId", isLoggedIn, async (req, res, next) => {
     const id = req.params.promptId;
     const prompt = await Prompt.findById(id);
     const definition = prompt.definition;
-    res.render("ask/ask", { definition, id });
+    res.render("ask/ask", {
+      definition,
+      id,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -30,7 +34,13 @@ router.post("/:promptId", isLoggedIn, async (req, res, next) => {
     let tag = await Prompt.findById(prompt);
     tag = tag.tag;
     const user = req.session.currentUser._id;
-    let responseId = await Response.create({ query, chatGPTresponse, prompt, tag, user });
+    let responseId = await Response.create({
+      query,
+      chatGPTresponse,
+      prompt,
+      tag,
+      user,
+    });
     responseId = responseId._id;
     res.redirect(`/responses/${responseId}`);
   } catch (error) {

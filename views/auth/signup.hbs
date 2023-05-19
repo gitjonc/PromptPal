@@ -4,7 +4,7 @@
     <div>
       <h3>¿Ya tienes cuenta?</h3>
       <p>Accede a tu cuenta ahora mismo.</p>
-      <button class="whiteButton"><a href="/log-in">Iniciar sesión</a></button>
+      <button class="signUpButton1"><a href="/log-in">Iniciar sesión</a></button>
     </div>
 
   </div>
@@ -27,12 +27,14 @@
     />
 
     <label for="profilePic">Imagen de perfil:</label>
+    <div class="file-select" id="profilePic">
     <input required type="file" id="profilePic" name="profilePic" />
+    </div>
 
     <label for="industry">Sector:</label>
     <input type="text" name="industry" placeholder="Tu sector (opcional)" />
 
-    <button type="submit" class="blueButton">Crear cuenta</button>
+    <button type="submit" class="signUpButton2">Crear cuenta</button>
 
   </form>
   {{#if errorMessage}}

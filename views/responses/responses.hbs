@@ -1,20 +1,23 @@
-<div class="promptsTitle">
-  <h2 class="title">Tus respuestas</h2>
-</div>
-<div class="allPromptsSearch">
+<div class="centerFlexTitle">
+  <h2 class="h2">Tus respuestas</h2>
+
+
   <form action="/responses" method="POST">
-    <select name="tag" id="tags">
+    <select name="tag" id="tags" class="greyInput">
       <option value="null">Todos</option>
       {{#each tags}}
         <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
-    <select name="sortByDate" id="sortByDate">
+          <button type="submit" class="blueButton">Filtrar</button>
+
+    <select name="sortByDate" id="sortByDate" class="greyInput">
       <option value="1">Ascendente</option>
       <option value="-1">Descendente</option>
     </select>
-    <button type="submit">Filtrar</button>
+    <button type="submit" class="blueButton">Filtrar</button>
   </form>
+</div>
 </div>
 
 <div class="prompts">
@@ -26,20 +29,22 @@
 
       <p class="fifty-chars">{{chatGPTresponse}}</p>
 
+<div class="flex bin">
       <p>Creación: {{createdAt}}</p>
       <p>Ultima modificación: {{updatedAt}}</p>
+      </div>
 
-      <div class="flex">
+      <div class="flex bin">
 
         <button class="blueButtonRes"><a
             href="/responses/{{_id}}"
           >Revisar</a></button>
-        <button class="blueButtonDelRes"><a
-            href="/responses/{{_id}}/delete"
-          >Eliminar</a></button>
+        
         <button class="blueButtonSendRes"><a
             href="/responses/{{_id}}/send"
           >Enviar por email</a></button>
+
+          <a href="/prompts/{{_id}}/delete"><img src="/images/delete.png" /></a>
 
       </div>
     </div>

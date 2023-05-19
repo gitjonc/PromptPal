@@ -1,47 +1,41 @@
-<a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a>
+  <div class="promptsTitle">
+    <h2 class="title">Encuentra tu prompt adecuado para obtener la mejor
+      respuesta</h2>
 
-<a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis prompts</button></a>
+    <div class="prompts">
 
-<div class="flex">
+      <div id="prompt">
+        <h3 class="tags">{{prompt.tag}}</h3>
 
-  <a href="/prompts"><button>Ver todos</button></a>
+        <p class="hundred-chars">{{prompt.definition}}</p>
 
-  <a href="/prompts/buyer-persona"><button>Buyer Persona</button></a>
+        <div class="flex">
 
-  <a href="/prompts/content-creation"><button>Content Creation</button></a>
+          <button class="greenButtonPrompt button"><a
+              href="#pop-up"
+            >Ver</a></button>
+          <button class="blueButtonPrompt"><a
+              href="/prompts/{{_id}}/edit"
+            >Utilizar</a></button>
 
-  <a href="/prompts/content-performance"><button>Content Performance</button></a>
+        </div>
+      </div>
 
-  <a href="/prompts/content-promotion-distribution"><button>Content Promotion
-      and Distribution</button></a>
+      <div id="pop-up" class="overlay">
+        <div class="popup">
+          <h3 class="tags">{{this.tag}}</h3>
+          <a class="close" href="#">&times;</a>
+          <div class="content">
+            {{this.definition}}
+            <div>
 
-  <a href="/prompts/seo"><button>SEO Copywritting</button></a>
+              <button class="blueButtonPrompt"><a
+                  href="/prompts/{{_id}}/edit"
+                >Utilizar</a></button>
+            </div>
 
-  <a href="/prompts/story-telling"><button>Story Telling</button></a>
-
-</div>
-
-<h2>{{prompt.tag}}</h2>
-
-<div class="prompts">
-  <p class="definition">{{prompt.definition}}</p>
-  <p class="response">{{prompt.responses}}</p>
-  <div class="flex">
-  <a href="/prompts/{{prompt._id}}/edit" class="promptPal"><button
-      class="promptPalButton"
-    >Seleccionar</button></a>
-    {{#if asPrompt}}
-  <a href="/prompts/{{prompt._id}}/prompts" class="promptPal"><button
-      class="promptPalButton"
-    >Ver consultas</button></a>
-    {{/if}}
-    <br>
-    {{#if responses}}
-    <a href="/prompts/{{prompt._id}}/prompts" class="promptPal"><button
-      class="promptPalButton"
-    >Ver consultas</button></a>
-
-    {{/if}}
-</div>
-
-
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>

@@ -1,4 +1,4 @@
-<div class="centerFlexTitle"><h2>Mis prompts</h2>
+<div class="centerFlexTitle"><h2 class="h2">Mis prompts</h2>
 <a href="/prompts/create"><button class="createPromptButton">Crear prompt</button></a>
 
   {{#if prompts}}
@@ -29,15 +29,15 @@
 
         <div class="flex bin">
 
-          <button class="greenButtonPrompt button"><a
+          {{!-- <button class="greenButtonPrompt button"><a
               href="#pop-up"
-            >Ver</a></button>
+            >Ver</a></button> --}}
           <button class="blueButtonPrompt"><a
               href="/ask/{{_id}}"
             >Consultar</a></button>
           <button class="blueButtonPrompt"><a
               href="/prompts/{{_id}}/edit"
-            >Utilizar</a></button>
+            >Editar</a></button>
           <a href="/prompts/{{_id}}/delete"><img src="/images/delete.png" /></a>
 
         </div>

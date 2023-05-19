@@ -19,7 +19,11 @@ router.get("/", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    res.render("responses/responses", { tags, responses: responsesUpdated });
+    res.render("responses/responses", {
+      tags,
+      responses: responsesUpdated,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -49,7 +53,11 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       element.updatedAt = element.updatedAt.toLocaleDateString("es-ES");
       return element;
     });
-    res.render("responses/responses", { tags, responses: responsesUpdated });
+    res.render("responses/responses", {
+      tags,
+      responses: responsesUpdated,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -59,7 +67,10 @@ router.get("/:response", isLoggedIn, (req, res) => {
   const { response } = req.params;
   Response.findById(response)
     .then((response) => {
-      res.render("responses/response.hbs", { response });
+      res.render("responses/response.hbs", {
+        response,
+        userInSession: req.session.currentUser,
+      });
     })
     .catch((err) => console.log(err));
 });

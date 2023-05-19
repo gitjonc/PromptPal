@@ -11,7 +11,7 @@
   </head>
 
   <body>
-
+{{#if userInSession}}
     <header>
       <div class="navbar">
         <div>
@@ -24,24 +24,49 @@
         <nav>
 
           <ul>
-            <li><a href="/prompts" class="navA"> Explorar Prompts </a></li>
-            <li><a href="/prompts/mis-prompts" class="navA">
+            <li><a href="/prompts" id="sign-up" class="bluebuttonres"> Explorar Prompts </a></li>
+            <li><a href="/prompts/mis-prompts" id="sign-up" class="bluebuttonres">
                 Mis Prompts
               </a></li>
-            <li><a href="/prompts/create"><button class="PromptPalButtonNav">Crear un Prompt +</button></a></li>
+            <li><a href="/prompts/create" id="sign-up" class="bluebuttonres"><button>Crear un Prompt +</button></a></li>
 
-            {{#if userInSession}}
+            
             <li><div id="contenedor"><img
                   src="{{userInSession.profilePic}}"
                   class="navPic"
                 /><div id="user">
                  <div class="userProfile"><a href="/prompts/mis-prompts">Mis Prompts</a></div>
                  <div class="userProfile"><a href="/responses">Mis respuestas</a></div> 
-                 <div class="userProfile"><a href="/profile">Mi perfil</a></div>
-                 <div class="userProfile"><a href="/edit-profile">Editar Usuario</a></div>
+                 <div class="userProfile"><a href="/edit-profile">Perfil</a></div>
                  <div class="userProfile"><a href="/log-out">Cerrar sesión</a></div>
                 </div></li>
           </ul>
+          {{else}}
+       <header>
+      <div class="navbar">
+        <div>
+          <a href="/"><img
+              src="/images/PromptPal-logo-negativo.png"
+              alt="promptPal"
+              class="navBar-logo"
+            /></a>
+            
+        </div>
+        <div><p class="slogan">La respuesta perfecta a un prompt de distancia</p></div>
+        <nav class="navA">
+          
+          <ul>
+            <li><a href="/sign-up" id="sign-up" class="bluebuttonres">
+                Crear una cuenta
+              </a></li>
+            <li><a href="/log-in" id="sign-up" class="bluebuttonres">
+                Iniciar sesión
+              </a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </header> 
           {{/if}}
 
         </nav>
@@ -49,28 +74,7 @@
 
     </header>
 
-    {{! <header>
-      <div class="navbar">
-        <div>
-          <a href="/"><img
-              src="./../images/PromptPAL_Logo2.png"
-              alt="promptPal"
-              class="promptPal"
-            /></a>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="/sign-up" class="promptPalButton">
-                Crear una cuenta
-              </a></li>
-            <li><a href="/log-in" class="promptPalButton">
-                Iniciar sesión
-              </a></li>
-          </ul>
-        </nav>
-      </div>
-
-    </header> }}
+    
 
     {{{body}}}
 

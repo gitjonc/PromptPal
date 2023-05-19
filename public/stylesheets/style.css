@@ -26,16 +26,55 @@ body {
 }
 
 .centerFlex {
+  width: 100%;
+  height: 80%;
   display: flex;
-  justify-content: center;
-}
-
-.box {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 40px 0 0 0;
+}
+
+.centerFlexTop {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.centerFlexTop2 {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.centerFlexWrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.centerFlexTitle {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+}
+
+.centerFlexTitleNo {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.newBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 70vw;
+  height: auto;
+  background-color: #ececed;
 }
 
 .PromptPal-index {
@@ -70,6 +109,41 @@ body {
 
 #first {
   background-color: #5ed9a7;
+}
+
+.newPromptText {
+  min-width: 60vw;
+  background-color: #5ed9a7;
+  border-radius: 10%;
+  border: 0;
+  max-height: 120px;
+  padding: 20px;
+}
+
+.newPromptText2 {
+  min-width: 60vw;
+  max-width: 80vw;
+  background-color: #5ed9a7;
+  border-radius: 10%;
+  border: 0;
+  height: 30vh;
+  max-height: 60vh;
+  padding: 20px;
+}
+
+.newPromptTag {
+  width: 26%;
+  border-radius: 10%;
+  border: 0;
+  padding: 20px;
+}
+
+.editPromptTag {
+  width: auto;
+  min-width: 300px;
+  border-radius: 10%;
+  border: 0;
+  padding: 20px;
 }
 
 .inflex a{
@@ -116,11 +190,6 @@ header > div {
   align-items: center;
 }
 
-.form {
-  display: flex;
-  
-}
-
 .promptPal-logo {
   margin-left: 20px;
   width: 160px;
@@ -136,8 +205,7 @@ header > div {
 label, input {
   display: block;
   text-align: left;
-  margin-bottom: 6px;
-  
+  margin-bottom: 6px;  
 }
 
 
@@ -150,6 +218,32 @@ input {
 
   margin: 6px auto;
 } */
+
+.greyInput{
+  width: auto;
+  height: 20px;
+  background-color: #F6F6F6;
+  border-radius: 40%;
+  margin: 6px;
+  padding-left: 20px;
+  border: 0;
+}
+
+.allPromptsSearch {
+  margin-bottom: 2px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.allPromptsSearch form, select {
+  width: 100%;
+
+}
+
+.allPromptsSearch select {
+  width: 90%;
+}
 
 .promptPal {
   width: 160px;
@@ -234,10 +328,66 @@ input {
   border-color: #121224;
 }
 
+.blueButton3{
+  background-color: #121224;
+  color: #ececed;
+  margin-top: 20px;
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 12%;
+  border-color: #121224;
+}
+
 .blueButtonPrompt {
   background-color: #121224;
   text-decoration: none;
+  cursor: pointer;
   width: 100px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 12%;
+  border-color: #121224;
+}
+
+.blueButtonRes {
+  background-color: #121224;
+  text-decoration: none;
+  cursor: pointer;
+  width: 200px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 12%;
+  border-color: #121224;
+}
+
+.blueButtonDelRes {
+  background-color: red;
+  text-decoration: none;
+  cursor: pointer;
+  width: 200px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 12%;
+  border-color: red;
+}
+
+.blueButtonSendRes {
+  background-color: #5ed9a7;
+  text-decoration: none;
+  cursor: pointer;
+  width: 200px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 12%;
+  border-color: #5ed9a7;
+}
+
+.createPromptButton {
+  background-color: #121224;
+  color: #ececed;
+  text-decoration: none;
+  cursor: pointer;
+  width: auto;
   height: 36px;
   padding: 10px;
   border-radius: 12%;
@@ -259,6 +409,21 @@ input {
   font-weight: 600;
 }
 
+.blueButtonRes a {
+  color: #ececed;
+  font-weight: 600;
+}
+
+.blueButtonDelRes a {
+  color: #ececed;
+  font-weight: 600;
+}
+
+.blueButtonSendRes a {
+  color: #121224;
+  font-weight: 600;
+}
+
 .greenButtonPrompt a {
   color: #121224;
   font-weight: 600;
@@ -271,6 +436,10 @@ input {
   padding: 5px 10px;
   border-radius: 12%;
   border-color: #ececed;
+}
+
+.whiteBottom {
+  background-color: #ececed;
 }
 
 section {
@@ -294,6 +463,7 @@ section {
 .PromptPalButtonNav {
   background-color: #5ed9a7;
   padding: 4px 10px;
+  cursor: pointer;
   margin: 0 10px 0 0;  
   border-radius: 6px;
   border-color: #121224;
@@ -428,6 +598,31 @@ li a:hover {
   max-height: 200px;
 }
 
+#promptNew {
+  width: auto;
+  height: auto;
+  padding: 10px 10px 20px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 8%;
+  margin: 10px;
+}
+
+#promptNew4 {
+  width: auto;
+  max-width: 80%;
+  height: auto;
+  padding: 20px 0;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 8%;
+
+}
+
 #prompt p {
   display: block;
 }
@@ -474,6 +669,31 @@ li a:hover {
   padding: 10px;
 }
 
+.flexFigma {
+    background-color: #ececed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 60px;
+  padding: 60px;
+}
+
+.flexLeft {
+  display: flex;
+  justify-content: stretch;
+}
+
+
+.divFigma{
+  min-height: 300px;
+
+}
+
+.wrap {
+flex: none;
+  flex-wrap: wrap;
+}
+
 .promptsEdit {
   border: 2px solid #5ed9a7;
   margin-bottom: 2px;
@@ -502,7 +722,7 @@ li a:hover {
 .definitionEdit {
   background-color: aquamarine;
   padding: 10px;
-  width: 100%;
+  width: 50%;
   height: auto;
   justify-content: center;
 }
@@ -599,4 +819,20 @@ li a:hover {
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+
+/* FIGMA {} */
+
+.create {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 32px;
+
+position: absolute;
+width: 1040px;
+height: 471px;
+left: calc(50% - 1040px/2);
+top: 237px;
 }

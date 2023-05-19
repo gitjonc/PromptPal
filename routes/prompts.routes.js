@@ -137,7 +137,7 @@ router.get("/:prompt/edit", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
   Prompt.findById(prompt)
     .then((promptToEdit) => {
-      res.render("prompts/edited-prompt.hbs", { promptToEdit });
+      res.render("prompts/edit-prompt.hbs", { promptToEdit });
     })
     .catch((error) => next(error));
 });

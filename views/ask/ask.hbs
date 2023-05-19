@@ -1,10 +1,41 @@
-<h2>Realiza la consulta a ChatGPT</h2>
-<p>Recuerda editar los parámetros necesarios antes de realizar la consulta</p>
-<div id="consult">
-  <form action="{{id}}" method="POST">
-    <textarea name="prompt" cols="30" rows="10" class="definitionEdit">{{definition}}</textarea>
-    <button type="submit" id="ask" class="promptPalButton">Preguntar</button>
-  </form>
-  <img src="/images/loadingImage.gif" id="loading-img" style="display:none" alt="" />
+<div class="centerFlexTitle">
+  <h2 class="centerFlexTitleNo">Realiza la consulta a ChatGPT</h2>
+  </div>
+  <div class="centerFlexTitleNo">
+     <p>Recuerda editar los parámetros necesarios antes de realizar la consulta</p> 
+
+  </div>
+<div class="centerFlex">
+  <div id="promptNew">
+
+    <form action="{{id}}" method="POST">
+
+      <textarea
+        class="newPromptText hundred-chars"
+        name="prompt"
+        cols="30"
+        rows="10"
+      >{{definition}}</textarea>
+
+      <input
+        type="text"
+        name="tag"
+        value="{{promptToEdit.tag}}"
+        class="editPromptTag"
+      />
+
+      <button type="submit" id="ask" class="blueButtonPrompt"><a>Consultar</a></button>
+
+    </form>
+     <img
+    src="/images/PromptPAL_Logo2.png"
+    id="loading-img"
+    style="display:none"
+    alt=""
+  />
 </div>
 <script src="/js/loadingScript.js"></script>
+
+  </div>
+
+</div>

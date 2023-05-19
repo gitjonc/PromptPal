@@ -183,4 +183,4 @@ module.exports = User;
 
 ### Slides
 
-[Slides Link]()
+[Slides Link](https://slides.com/jaeg90/historia-de-un-proyecto)

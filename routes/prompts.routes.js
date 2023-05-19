@@ -7,6 +7,7 @@ const { isLoggedIn } = require("../middleware/route-guard.js");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
+    console.log(req.session.currentUser);
     const tags = await Prompt.distinct("tag");
     const prompts = await Prompt.find();
     const promptsUpdated = prompts.map((el) => {
@@ -116,7 +117,7 @@ router.get("/:prompt/prompt", isLoggedIn, (req, res, next) => {
 
 router.get("/:prompt/prompts", isLoggedIn, (req, res, next) => {
   const { prompt } = req.params;
-  Prompt.find({ prompt: prompt }).then((asPrompt) => {
+  Prompt.find({ prompt }).then((asPrompt) => {
     Prompt.findById(prompt).then((originalPrompt) => {
       res.render("prompts/associated-prompts.hbs", {
         originalPrompt,

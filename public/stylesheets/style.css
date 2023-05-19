@@ -26,8 +26,24 @@ body {
 }
 
 .centerFlex {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.centerFlexWrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.centerFlexTitle {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
 }
 
 .newBox {
@@ -78,13 +94,29 @@ body {
   background-color: #5ed9a7;
   border-radius: 10%;
   border: 0;
-  min-height: 200px;
+  max-height: 120px;
+  padding: 20px;
+}
+
+.newPromptText2 {
+  width: 60vw;
+  max-width: 80vw;
+  background-color: #5ed9a7;
+  border-radius: 10%;
+  border: 0;
+  max-height: 60vh;
   padding: 20px;
 }
 
 .newPromptTag {
-  width: 100%;
-  background-color: rgb(177, 167, 167);
+  width: 26%;
+  border-radius: 10%;
+  border: 0;
+  padding: 20px;
+}
+
+.editPromptTag {
+  width: auto;
   border-radius: 10%;
   border: 0;
   padding: 20px;
@@ -132,11 +164,6 @@ header > div {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.form {
-  display: flex;
-  
 }
 
 .promptPal-logo {
@@ -255,7 +282,20 @@ input {
 .blueButtonPrompt {
   background-color: #121224;
   text-decoration: none;
+  cursor: pointer;
   width: 100px;
+  height: 36px;
+  padding: 10px;
+  border-radius: 12%;
+  border-color: #121224;
+}
+
+.createPromptButton {
+  background-color: #121224;
+  color: #ececed;
+  text-decoration: none;
+  cursor: pointer;
+  width: auto;
   height: 36px;
   padding: 10px;
   border-radius: 12%;
@@ -450,6 +490,18 @@ li a:hover {
   max-height: 200px;
 }
 
+#promptNew {
+  width: auto;
+  height: auto;
+  padding: 10px 10px 20px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 8%;
+  margin: 10px;
+}
+
 #prompt p {
   display: block;
 }
@@ -497,11 +549,11 @@ li a:hover {
 }
 
 .flexFigma {
+    background-color: #ececed;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #ececed;
-  margin: 0;
+  margin: 60px;
   padding: 60px;
 }
 
@@ -549,7 +601,7 @@ flex: none;
 .definitionEdit {
   background-color: aquamarine;
   padding: 10px;
-  width: 100%;
+  width: 50%;
   height: auto;
   justify-content: center;
 }

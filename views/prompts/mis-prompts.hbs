@@ -1,73 +1,78 @@
-<h2>Mis prompts</h2>
+<div class="centerFlexTitle"><h2>Mis prompts</h2>
+<button class="createPromptButton"><a href="/prompts/create">Crear prompt</a></button>
 
-{{#if prompts}}
+  {{#if prompts}}
 
-  <form action="/prompts/mis-prompts" method="POST">
-    <label for="tags">Tags:</label>
-    <select name="tag" id="tags">
-      <option value="null">Todos</option>
-      {{#each tags}}
-        <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
-    <button type="submit">Filtrar</button>
-    <select name="sortByDate" id="sortByDate">
-      <option value="1">Ascendente</option>
-      <option value="-1">Descendente</option>
-    </select>
-    <button type="submit">Filtrar</button>
-  </form>
-
-  <div><a href="/prompts/create"><button class="promptPalCreateButton">Crear
-        prompt</button></a>
-    <a href="/prompts/mis-prompts"><button class="promptPalCreateButton">Mis
-        prompts</button></a></div>
-
-  {{#each prompts}}
-    <div id="prompt">
-      <h3 class="tags">{{tag}}</h3>
-
-      <p class="hundred-chars">{{definition}}</p>
-
-      <div class="flex">
-
-        <button class="greenButtonPrompt button"><a
-            href="#pop-up"
-          >Ver</a></button>
-        <button class="blueButtonPrompt"><a
-            href="/prompts/{{_id}}/edit"
-          >Utilizar</a></button>
-
-      </div>
+    <form action="/prompts/mis-prompts" method="POST">
+      <label for="tags">Tags:</label>
+      <select name="tag" id="tags">
+        <option value="null">Todos</option>
+        {{#each tags}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <button type="submit">Filtrar</button>
+      <select name="sortByDate" id="sortByDate">
+        <option value="1">Ascendente</option>
+        <option value="-1">Descendente</option>
+      </select>
+      <button type="submit">Filtrar</button>
+    </form>
     </div>
 
-    <div id="pop-up" class="overlay">
-      <div class="popup">
-        <h3 class="tags">{{this.tag}}</h3>
-        <a class="close" href="#">&times;</a>
-        <div class="content">
-          {{this.definition}}
-          <div>
+    <div class="centerFlexWrap">
 
-            <button class="blueButtonPrompt"><a
-                href="/prompts/{{_id}}/edit"
-              >Utilizar</a></button>
-          </div>
+    {{#each prompts}}
+      <div id="prompt">
+        <h3 class="tags">{{tag}}</h3>
+
+        <p class="fifty-chars">{{definition}}</p>
+
+        <div class="flex bin">
+
+          <button class="greenButtonPrompt button"><a
+              href="#pop-up"
+            >Ver</a></button>
+          <button class="blueButtonPrompt"><a
+              href="/ask/{{_id}}"
+            >Consultar</a></button>
+          <button class="blueButtonPrompt"><a
+              href="/prompts/{{_id}}/edit"
+            >Utilizar</a></button>
+          <a href="/prompts/{{_id}}/delete"><img src="/images/delete.png" /></a>
 
         </div>
       </div>
-    </div>
 
-  {{/each}}
+      <div id="pop-up" class="overlay">
+        <div class="popup">
+          <h3 class="tags">{{this.tag}}</h3>
+          <a class="close" href="#">&times;</a>
+          <div class="content">
+            {{this.definition}}
+            <div>
 
-{{else}}
+              <button class="blueButtonPrompt"><a
+                  href="/prompts/{{_id}}/edit"
+                >Utilizar</a></button>
+            </div>
 
-  <h3>¿Todavía no has creado ni utilizado ningún prompt?</h3>
+          </div>
+        </div>
+      </div>
 
-  <p>Utiliza tu primer prompt
-    <a href="/prompts"><button class="promptPalCreateButton">Buscar prompt</button></a><br
-    /><br />
-    o créalo desde cero
-    <a href="/prompts/create"><button class="promptPalCreateButton">Crear prompt</button></a></p>
+    {{/each}}
 
-{{/if}}
+  {{else}}
+
+    <h3>¿Todavía no has creado ni utilizado ningún prompt?</h3>
+
+    <p>Utiliza tu primer prompt
+      <a href="/prompts"><button class="promptPalCreateButton">Buscar prompt</button></a><br
+      /><br />
+      o créalo desde cero
+      <a href="/prompts/create"><button class="promptPalCreateButton">Crear
+          prompt</button></a></p>
+
+  {{/if}}
+</div>

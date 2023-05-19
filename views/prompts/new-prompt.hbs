@@ -1,57 +1,25 @@
-{{! <h2>Crear Prompt</h2>
-
-<div class="newBox">
-  <div class="promptsEdit">
-
-      <textarea
-        class="newPromptText"
-        name="definition"
-        cols="30"
-        rows="10"
-        placeholder="Escribe aquí tu prompt"
-      ></textarea>
-
-    </div>
-  </div>
-  
-
-  <form action="/prompts/create" method="post">
-
-    <div class="prompts">
-      <h3>TAG:</h3>
-      <input
-        type="text"
-        name="tag"
-        value=""
-        class="prompts"
-          placeholder="Escribe aquí tu tag"
-      />
-      <div class="flex">
-        <button type="submit" class="promptPalButton">Guardar</button>
-      </div>
-
-    </div>
-    </div>
-
-  </form>
-
-</div> }}
-
-<div class="flexFigma">
+<div class="centerFlex">
   <h2>Crear prompt</h2>
-  <div class="whiteBottom">
+  <div id="promptNew">
+    <form action="/prompts/create" method="post">
     <textarea
-      class="newPromptText"
+    name="definition"
+      class="newPromptText2 hundred-chars"
       placeholder="Escribe aquí tu prompt"
     ></textarea>
-  </div>
-  <div class="flexLeft">
+
     <input
       type="text"
       name="tag"
       class="newPromptTag"
       placeholder="Escribe aquí tu tag"
     />
-    <button type="submit" class="blueButton">Guardar</button>
+
+    <div class="flex">
+
+        <button type="submit" class="blueButtonPrompt"><a>Guardar</a></button>
+
+    </div>
   </div>
+    </form>
 </div>

@@ -1,0 +1,28 @@
+<div class="centerFlex">
+  <h2 class="centerFlexTitle">Editar Prompt</h2>
+
+  <div id="promptNew">
+
+    <form action="/prompts/{{promptToEdit._id}}/edit" method="post">
+
+      <textarea
+        class="newPromptText hundred-chars"
+        name="definition"
+        cols="30"
+        rows="10"
+      >{{promptToEdit.definition}}</textarea>
+
+      <input
+        type="text"
+        name="tag"
+        value="{{promptToEdit.tag}}"
+        class="editPromptTag"
+      />
+
+      <button type="submit" class="blueButtonPrompt"><a>Guardar</a></button>
+
+    </form>
+
+  </div>
+
+</div>

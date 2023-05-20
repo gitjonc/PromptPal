@@ -1,40 +1,20 @@
-<div class="form centerFlex">
+<div class="form centerFlexImage" style="">
   <h2 class="h2">Editar cuenta</h2>
   <form action="/edit-profile" method="POST" enctype="multipart/form-data">
 
     <label for="username">Usuario:</label>
-    <input
-      type="text"
-      name="username"
-      placeholder="Your username"
-      value="{{userInSession.username}}"
-    />
+    <input type="text" name="username" placeholder="Your username" value="{{userInSession.username}}" />
 
     <label for="email">Email:</label>
-    <input
-      type="email"
-      name="email"
-      placeholder="Your email"
-      value="{{userInSession.email}}"
-    />
+    <input type="email" name="email" placeholder="Your email" value="{{userInSession.email}}" />
 
     <label for="profilePic">Imagen de perfil:</label>
     <img src="{{userInSession.profilePic}}" alt="" />
-    <input
-      type="text"
-      name="profilePicOld"
-      value="{{userInSession.profilePic}}"
-      style="display:none"
-    />
+    <input type="text" name="profilePicOld" value="{{userInSession.profilePic}}" style="display:none" />
     <input type="file" id="profilePic" name="profilePic" />
 
     <label for="industry">Sector:</label>
-    <input
-      type="text"
-      name="industry"
-      placeholder="Your industry"
-      value="{{userInSession.industry}}"
-    />
+    <input type="text" name="industry" placeholder="Your industry" value="{{userInSession.industry}}" />
 
     <button type="submit" class="promptPalButton">Editar</button>
 
